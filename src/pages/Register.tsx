@@ -1,22 +1,17 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import RegisterForm from "../components/RegisterForm";
+import { FormValues } from "../components/RegisterForm";
 
 const Register = () => {
   const [isShowError, setIsShowError] = useState(false);
 
-  const handleOnSubmit = (
-    e: React.FormEvent,
-    userId: string,
-    password: string,
-    confirmPassword: string
-  ) => {
-    e.preventDefault();
-    if (password !== confirmPassword) {
+  const handleFormSubmit = (data: FormValues) => {
+    console.log(data);
+    if (data.password !== data.confirmPassword) {
       setIsShowError(true);
     } else {
       setIsShowError(false);
-      alert(JSON.stringify({ userId, password, confirmPassword }));
     }
   };
 
@@ -35,7 +30,7 @@ const Register = () => {
         </h1>
         <div className="border-t-4 border-black w-1/2 mx-auto mt-4"></div>
 
-        <RegisterForm handleOnSubmit={handleOnSubmit} />
+        <RegisterForm handleFormSubmit={handleFormSubmit} />
       </section>
 
       {isShowError && (

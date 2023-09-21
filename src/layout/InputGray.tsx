@@ -1,3 +1,5 @@
+import { forwardRef } from "react";
+
 type PropTypes = {
   type?: "text" | "password";
   value?: string;
@@ -5,16 +7,19 @@ type PropTypes = {
   [x: string]: any;
 };
 
-const InputGray = ({ type, value, onChange, ...rest }: PropTypes) => {
-  return (
-    <input
-      type={type || "text"}
-      className="flex-1 px-2 py-1 border border-black bg-gray-500/20"
-      value={value}
-      onChange={onChange}
-      {...rest}
-    />
-  );
-};
+const InputGray = forwardRef<HTMLInputElement, PropTypes>(
+  ({ type, value, onChange, ...rest }, ref) => {
+    return (
+      <input
+        type={type || "text"}
+        className="flex-1 px-2 py-1 border border-black bg-gray-500/20"
+        value={value}
+        onChange={onChange}
+        ref={ref}
+        {...rest}
+      />
+    );
+  }
+);
 
 export default InputGray;

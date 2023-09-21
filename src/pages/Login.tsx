@@ -1,18 +1,12 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import LoginForm from "../components/LoginForm";
+import LoginForm, { FormValues } from "../components/LoginForm";
 
 const Login = () => {
   const [isShowError, setIsShowError] = useState(false);
 
-  const handleOnSubmit = (
-    e: React.FormEvent,
-    userId: string,
-    password: string,
-    isKeepLogged: boolean
-  ) => {
-    e.preventDefault();
-    alert(JSON.stringify({ userId, password, isKeepLogged }));
+  const handleFormSubmit = (data: FormValues) => {
+    console.log(data);
     setIsShowError(true);
   };
 
@@ -31,7 +25,7 @@ const Login = () => {
         </h1>
         <div className="border-t-4 border-black w-1/2 mx-auto mt-4"></div>
 
-        <LoginForm handleOnSubmit={handleOnSubmit} />
+        <LoginForm handleFormSubmit={handleFormSubmit} />
 
         <p className="text-center">
           <span>No account? </span>

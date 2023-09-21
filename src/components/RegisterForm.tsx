@@ -1,65 +1,35 @@
-import { useState } from "react";
+import { SubmitHandler, useForm } from "react-hook-form";
 import ButtonBlack from "../layout/ButtonBlack";
 import InputGray from "../layout/InputGray";
 import InputGrayPass from "../layout/InputGrayPass";
 
-type PropTypes = {
-  handleOnSubmit: (
-    e: React.FormEvent,
-    userId: string,
-    password: string,
-    confirmPassword: string
-  ) => void;
+export type FormValues = {
+  userId: string;
+  password: string;
+  confirmPassword: string;
 };
 
-const RegisterForm = ({ handleOnSubmit }: PropTypes) => {
-  const [userId, setUserId] = useState("");
-  const [isUserIdValid, setIsUserIdValid] = useState(false);
+type PropTypes = {
+  handleFormSubmit: SubmitHandler<FormValues>;
+};
 
-  const [password, setPassword] = useState("");
-  const [isPasswordValid, setIsPasswordValid] = useState(false);
-
-  const [confirmPassword, setConfirmPassword] = useState("");
-  const [isConfirmPasswordValid, setIsConfirmPasswordValid] = useState(false);
-
-  const handleValidateUserId = (value: string) => {
-    setIsUserIdValid(false);
-    if (value.length > 0) {
-      setIsUserIdValid(true);
-    }
-  };
-
-  const handleValidatePassword = (value: string) => {
-    setIsPasswordValid(false);
-    if (value.length > 0) {
-      setIsPasswordValid(true);
-    }
-  };
-
-  const handleValidateConfirmPassword = (value: string) => {
-    setIsConfirmPasswordValid(false);
-    if (value.length > 0) {
-      setIsConfirmPasswordValid(true);
-    }
-  };
+const RegisterForm = ({ handleFormSubmit }: PropTypes) => {
+  const {
+    register,
+    handleSubmit,
+    formState: { isDirty, isValid },
+  } = useForm<FormValues>();
 
   return (
     <form
-      onSubmit={(e) => handleOnSubmit(e, userId, password, confirmPassword)}
       className="space-y-4 mt-10 mb-5"
+      onSubmit={handleSubmit(handleFormSubmit)}
     >
       <div className="flex items-center relative">
         <label htmlFor="user-id" className="w-40 text-lg text-right pr-2">
           User ID*
         </label>
-        <InputGray
-          value={userId}
-          onChange={(e) => {
-            setUserId(e.target.value);
-            handleValidateUserId(e.target.value);
-          }}
-          id="user-id"
-        />
+        <InputGray id="user-id" {...register("userId", { required: true })} />
       </div>
 
       <div className="flex items-center relative">
@@ -67,12 +37,8 @@ const RegisterForm = ({ handleOnSubmit }: PropTypes) => {
           Password*
         </label>
         <InputGrayPass
-          value={password}
-          onChange={(e) => {
-            setPassword(e.target.value);
-            handleValidatePassword(e.target.value);
-          }}
           id="password"
+          {...register("password", { required: true })}
         />
       </div>
 
@@ -84,19 +50,12 @@ const RegisterForm = ({ handleOnSubmit }: PropTypes) => {
           Confirm password*
         </label>
         <InputGrayPass
-          value={confirmPassword}
-          onChange={(e) => {
-            setConfirmPassword(e.target.value);
-            handleValidateConfirmPassword(e.target.value);
-          }}
           id="confirm-password"
+          {...register("confirmPassword", { required: true })}
         />
       </div>
 
-      <ButtonBlack
-        className="ml-24"
-        disabled={!isUserIdValid || !isPasswordValid || !isConfirmPasswordValid}
-      >
+      <ButtonBlack className="ml-24" disabled={!isDirty || !isValid}>
         REGISTER
       </ButtonBlack>
     </form>
