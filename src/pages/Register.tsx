@@ -1,7 +1,5 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
-import RegisterForm from "../components/RegisterForm";
-import { FormValues } from "../components/RegisterForm";
+import RegisterForm, { FormValues } from "../components/RegisterForm";
 
 const Register = () => {
   const [isShowError, setIsShowError] = useState(false);
@@ -17,13 +15,6 @@ const Register = () => {
 
   return (
     <div className="h-screen grid place-items-center bg-bubbles">
-      <Link
-        to="/"
-        className="absolute top-4 left-4 px-8 py-1 border border-black"
-      >
-        LOGO
-      </Link>
-
       <section>
         <h1 className="text-4xl">
           Welcome to <span className="font-bold">myApp</span>
