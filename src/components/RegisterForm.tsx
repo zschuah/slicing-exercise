@@ -8,18 +8,19 @@ type PropTypes = {
     e: React.FormEvent,
     userId: string,
     password: string,
-    isKeepLogged: boolean
+    confirmPassword: string
   ) => void;
 };
 
-const LoginForm = ({ handleOnSubmit }: PropTypes) => {
+const RegisterForm = ({ handleOnSubmit }: PropTypes) => {
   const [userId, setUserId] = useState("");
   const [isUserIdValid, setIsUserIdValid] = useState(false);
 
   const [password, setPassword] = useState("");
   const [isPasswordValid, setIsPasswordValid] = useState(false);
 
-  const [isKeepLogged, setIsKeepLogged] = useState(false);
+  const [confirmPassword, setConfirmPassword] = useState("");
+  const [isConfirmPasswordValid, setIsConfirmPasswordValid] = useState(false);
 
   const handleValidateUserId = (value: string) => {
     setIsUserIdValid(false);
@@ -35,9 +36,16 @@ const LoginForm = ({ handleOnSubmit }: PropTypes) => {
     }
   };
 
+  const handleValidateConfirmPassword = (value: string) => {
+    setIsConfirmPasswordValid(false);
+    if (value.length > 0) {
+      setIsConfirmPasswordValid(true);
+    }
+  };
+
   return (
     <form
-      onSubmit={(e) => handleOnSubmit(e, userId, password, isKeepLogged)}
+      onSubmit={(e) => handleOnSubmit(e, userId, password, confirmPassword)}
       className="space-y-4 mt-10 mb-5"
     >
       <div className="flex items-center relative">
@@ -68,25 +76,31 @@ const LoginForm = ({ handleOnSubmit }: PropTypes) => {
         />
       </div>
 
-      <div>
-        <input
-          id="keep-logged"
-          type="checkbox"
-          className="ml-40 mr-1"
-          checked={isKeepLogged}
-          onChange={() => setIsKeepLogged(!isKeepLogged)}
+      <div className="flex items-center relative">
+        <label
+          htmlFor="confirm-password"
+          className="w-40 text-lg text-right pr-2"
+        >
+          Confirm password*
+        </label>
+        <InputGrayPass
+          value={confirmPassword}
+          onChange={(e) => {
+            setConfirmPassword(e.target.value);
+            handleValidateConfirmPassword(e.target.value);
+          }}
+          id="confirm-password"
         />
-        <label htmlFor="keep-logged">Keep me logged in</label>
       </div>
 
       <ButtonBlack
-        className="ml-40"
-        disabled={!isUserIdValid || !isPasswordValid}
+        className="ml-24"
+        disabled={!isUserIdValid || !isPasswordValid || !isConfirmPasswordValid}
       >
-        Login
+        REGISTER
       </ButtonBlack>
     </form>
   );
 };
 
-export default LoginForm;
+export default RegisterForm;

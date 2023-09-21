@@ -18,6 +18,13 @@ const Login = () => {
 
   return (
     <div className="h-screen grid place-items-center bg-bubbles">
+      <Link
+        to="/"
+        className="absolute top-4 left-4 px-8 py-1 border border-black"
+      >
+        LOGO
+      </Link>
+
       <section>
         <h1 className="text-4xl">
           Welcome to <span className="font-bold">myApp</span>
@@ -26,7 +33,7 @@ const Login = () => {
 
         <LoginForm handleOnSubmit={handleOnSubmit} />
 
-        <p>
+        <p className="text-center">
           <span>No account? </span>
           <Link className="underline" to="/register">
             Register here.
