@@ -1,4 +1,4 @@
-import { Contact } from "../pages/Contacts";
+import { Contact } from "../hooks/useFetchContacts";
 import ContactsCard from "./ContactsCard";
 
 type PropTypes = {
@@ -6,6 +6,7 @@ type PropTypes = {
   itemOffset: number;
   itemsPerPage: number;
   isLoading: boolean;
+  isError: boolean;
 };
 
 const ContactsGrid = ({
@@ -13,11 +14,22 @@ const ContactsGrid = ({
   itemOffset,
   itemsPerPage,
   isLoading,
+  isError,
 }: PropTypes) => {
   if (isLoading) {
     return (
       <section className="my-8">
         <h2 className="text-center text-3xl">Loading...</h2>
+      </section>
+    );
+  }
+
+  if (isError) {
+    return (
+      <section className="my-8">
+        <h2 className="text-center text-3xl">
+          Error loading contacts. Please try again later.
+        </h2>
       </section>
     );
   }
