@@ -1,8 +1,9 @@
+import { useQuery } from "@tanstack/react-query";
+import axios from "axios";
 import { useEffect, useState } from "react";
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 import ReactPaginate from "react-paginate";
-import axios from "axios";
-import ContactsCard from "../components/ContactsCard";
+import ContactsGrid from "../components/ContactsGrid";
 
 export type Contact = {
   image: string;
@@ -10,36 +11,67 @@ export type Contact = {
   email: string;
   mobile: string;
   home: string;
+  gender: string;
+  country: string;
 };
 
 const Contacts = () => {
-  const [contactList, setContactList] = useState<Contact[]>([]);
+  const { data, isLoading, error } = useQuery<Contact[], Error>({
+    queryKey: ["contacts"],
+    queryFn: async () => {
+      const res = await axios.get("https://randomuser.me/api/?results=100");
+      const formattedContacts = res.data.results.map((result: any) => {
+        return {
+          image: result?.picture?.large,
+          name: `${result?.name?.first} ${result?.name?.last}`,
+          email: result?.email,
+          mobile: result?.cell,
+          home: `${result?.location?.street?.number} ${result?.location?.street?.name}`,
+          gender: result?.gender,
+          country: result?.location?.country,
+        };
+      });
+      return formattedContacts;
+    },
+  });
+
+  const contactList = data || [];
+  const countryList = [
+    ...new Set(contactList.map((contact) => contact.country)),
+  ].sort();
+
   const itemsPerPage = 9;
   const [itemOffset, setItemOffset] = useState(0);
+  const [currentPage, setCurrentPage] = useState(0);
+
+  const [filterGender, setFilterGender] = useState("");
+  const [filterCountry, setFilterCountry] = useState("");
+
+  const filteredContactList = contactList
+    .filter((contact) => {
+      if (filterGender) {
+        return contact.gender === filterGender;
+      }
+      return contact;
+    })
+    .filter((contact) => {
+      if (filterCountry) {
+        return contact.country === filterCountry;
+      }
+      return contact;
+    });
 
   const handlePageClick = ({ selected }: { selected: number }) => {
-    console.log(selected);
-    const newOffset = (selected * itemsPerPage) % contactList.length;
+    const newOffset = (selected * itemsPerPage) % filteredContactList.length;
     setItemOffset(newOffset);
-  };
-
-  const handleFetchContacts = async () => {
-    const res = await axios.get("https://randomuser.me/api/?results=100");
-    const newContacts = res.data.results.map((result: any) => {
-      return {
-        image: result?.picture?.large,
-        name: `${result?.name?.first} ${result?.name?.last}`,
-        email: result?.email,
-        mobile: result?.cell,
-        home: `${result?.location?.street?.number} ${result?.location?.street?.name}`,
-      };
-    });
-    setContactList(newContacts);
+    setCurrentPage(selected);
   };
 
   useEffect(() => {
-    handleFetchContacts();
-  }, []);
+    if (filterGender || filterCountry) {
+      handlePageClick({ selected: 0 });
+    }
+  }, [filterGender, filterCountry]);
 
   return (
     <div className="h-screen bg-bubbles--blue overflow-auto">
@@ -51,22 +83,37 @@ const Contacts = () => {
           <div className="border-b-4 border-black flex-1 ml-2"></div>
         </div>
 
-        <select name="" id="">
-          <option value="">Male</option>
-          <option value="">Female</option>
+        <select
+          value={filterGender}
+          onChange={(e) => setFilterGender(e.target.value)}
+        >
+          <option value="">Gender</option>
+          <option value="male">Male</option>
+          <option value="female">Female</option>
         </select>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2 my-8">
-          {contactList
-            .slice(itemOffset, itemOffset + itemsPerPage)
-            .map((contact) => (
-              <ContactsCard key={contact.email} contact={contact} />
-            ))}
-        </div>
+        <select
+          value={filterCountry}
+          onChange={(e) => setFilterCountry(e.target.value)}
+        >
+          <option value="">Country</option>
+          {countryList.map((country) => (
+            <option key={country} value={country}>
+              {country}
+            </option>
+          ))}
+        </select>
+
+        <ContactsGrid
+          filteredContactList={filteredContactList}
+          itemOffset={itemOffset}
+          itemsPerPage={itemsPerPage}
+        />
 
         <ReactPaginate
-          pageCount={Math.ceil(contactList.length / itemsPerPage)}
+          pageCount={Math.ceil(filteredContactList.length / itemsPerPage)}
           onPageChange={handlePageClick}
+          forcePage={currentPage}
           className="flex items-center justify-center"
           pageClassName="p-2 underline"
           activeClassName="font-bold no-underline"

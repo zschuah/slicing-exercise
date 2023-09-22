@@ -18,6 +18,7 @@ const ContactsCard = ({ contact }: PropTypes) => {
         <p className="text-sm text-blue-500 underline">{contact.email}</p>
         <p className="text-sm text-blue-500 underline">{contact.mobile}</p>
         <p className="text-sm">{contact.home}</p>
+        <p className="text-sm">{contact.country}</p>
       </div>
     </div>
   );
