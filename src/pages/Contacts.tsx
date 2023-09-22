@@ -3,6 +3,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 import ReactPaginate from "react-paginate";
+import ContactsFilter from "../components/ContactsFilter";
 import ContactsGrid from "../components/ContactsGrid";
 
 export type Contact = {
@@ -83,44 +84,34 @@ const Contacts = () => {
           <div className="border-b-4 border-black flex-1 ml-2"></div>
         </div>
 
-        <select
-          value={filterGender}
-          onChange={(e) => setFilterGender(e.target.value)}
-        >
-          <option value="">Gender</option>
-          <option value="male">Male</option>
-          <option value="female">Female</option>
-        </select>
-
-        <select
-          value={filterCountry}
-          onChange={(e) => setFilterCountry(e.target.value)}
-        >
-          <option value="">Country</option>
-          {countryList.map((country) => (
-            <option key={country} value={country}>
-              {country}
-            </option>
-          ))}
-        </select>
+        <ContactsFilter
+          filterGender={filterGender}
+          setFilterGender={setFilterGender}
+          filterCountry={filterCountry}
+          setFilterCountry={setFilterCountry}
+          countryList={countryList}
+        />
 
         <ContactsGrid
           filteredContactList={filteredContactList}
           itemOffset={itemOffset}
           itemsPerPage={itemsPerPage}
+          isLoading={isLoading}
         />
 
-        <ReactPaginate
-          pageCount={Math.ceil(filteredContactList.length / itemsPerPage)}
-          onPageChange={handlePageClick}
-          forcePage={currentPage}
-          className="flex items-center justify-center"
-          pageClassName="p-2 underline"
-          activeClassName="font-bold no-underline"
-          previousLabel={<FaChevronLeft />}
-          nextLabel={<FaChevronRight />}
-          disabledClassName="opacity-20"
-        />
+        {filteredContactList.length > 0 && (
+          <ReactPaginate
+            pageCount={Math.ceil(filteredContactList.length / itemsPerPage)}
+            onPageChange={handlePageClick}
+            forcePage={currentPage}
+            className="flex items-center justify-center"
+            pageClassName="p-2 underline"
+            activeClassName="font-bold no-underline"
+            previousLabel={<FaChevronLeft />}
+            nextLabel={<FaChevronRight />}
+            disabledClassName="opacity-20"
+          />
+        )}
       </section>
     </div>
   );
