@@ -31,9 +31,12 @@ const useFetchContacts = () => {
 
       //DELAY - To test loading functionality
       // await new Promise((resolve) => setTimeout(resolve, 5000));
-
       return formattedContacts;
     },
+
+    //staleTime and cacheTime default 5mins - 300_000
+    //staleTime should be lower than cacheTime
+    staleTime: 10_000,
   });
 
   return { data, isLoading, isError };
