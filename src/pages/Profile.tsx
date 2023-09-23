@@ -1,30 +1,29 @@
-import { useState } from "react";
 import TabDotted from "../layout/TabDotted";
+import { Outlet } from "react-router-dom";
 
 const Profile = () => {
-  const [tabList] = useState([
-    { name: "Basic Details", value: "basic" },
-    { name: "Additional Details", value: "additional" },
-    { name: "Spouse Details", value: "spouse" },
-    { name: "Personal Preferences", value: "personal" },
-  ]);
-  const [activeTab, setActiveTab] = useState("basic");
-
   return (
     <div className="h-screen bg-bubbles--blue overflow-auto">
       <section className="mt-20 max-w-7xl mx-auto px-4">
         <div className="flex items-start">
           <aside className="w-48 mr-10 pt-20">
             <ul className="border-t border-black border-dashed">
-              {tabList.map((tab) => (
-                <TabDotted
-                  value={tab.value}
-                  activeTab={activeTab}
-                  setActiveTab={setActiveTab}
-                >
-                  {tab.name}
+              <li>
+                <TabDotted to="/profile/basic">Basic Details</TabDotted>
+              </li>
+              <li>
+                <TabDotted to="/profile/additional">
+                  Additional Details
                 </TabDotted>
-              ))}
+              </li>
+              <li>
+                <TabDotted to="/profile/spouse">Spouse Details</TabDotted>
+              </li>
+              <li>
+                <TabDotted to="/profile/personal">
+                  Personal Preferences
+                </TabDotted>
+              </li>
             </ul>
           </aside>
 
@@ -36,10 +35,7 @@ const Profile = () => {
               <div className="border-b-4 border-black flex-1 ml-2"></div>
             </div>
 
-            <p>
-              Lorem ipsum dolor sit amet consectetur, adipisicing elit. Libero,
-              nobis?
-            </p>
+            <Outlet />
           </section>
         </div>
       </section>
