@@ -21,7 +21,8 @@ const Drawer = ({ isShowNav, setIsShowNav }: PropTypes) => {
 
       <nav
         className={twMerge(
-          "absolute right-0 w-80 h-full z-30",
+          "absolute right-0 h-full z-30",
+          "w-40 sm:w-80",
           !isShowNav && "translate-x-full",
           "transition duration-500",
           "bg-slate-100 shadow-2xl"
