@@ -8,16 +8,25 @@ type PropTypes = {
 
 const Drawer = ({ isShowNav, setIsShowNav }: PropTypes) => {
   return (
-    <section
-      className={twMerge(
-        "absolute inset-0 flex",
-        !isShowNav && "translate-x-full",
-        "transition duration-500"
-      )}
-    >
-      <div className="flex-1" onClick={() => setIsShowNav(false)}></div>
+    <>
+      <div
+        className={twMerge(
+          "absolute inset-0 z-20",
+          isShowNav && "animate-show-overlay",
+          !isShowNav && "animate-hide-overlay",
+          "bg-slate-500"
+        )}
+        onClick={() => setIsShowNav(false)}
+      ></div>
 
-      <nav className="bg-slate-100 w-80 shadow-2xl">
+      <nav
+        className={twMerge(
+          "absolute right-0 h-full z-30",
+          !isShowNav && "translate-x-full",
+          "transition duration-500",
+          "bg-slate-100 w-80 shadow-2xl"
+        )}
+      >
         <ul className="mt-0" onClick={() => setIsShowNav(false)}>
           <li>
             <DrawerLink to="/contacts">My Contacts</DrawerLink>
@@ -33,7 +42,7 @@ const Drawer = ({ isShowNav, setIsShowNav }: PropTypes) => {
           </li>
         </ul>
       </nav>
-    </section>
+    </>
   );
 };
 
