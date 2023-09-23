@@ -36,7 +36,7 @@ const useFetchContacts = () => {
 
     //staleTime and cacheTime default 5mins - 300_000
     //staleTime should be lower than cacheTime
-    staleTime: 10_000,
+    staleTime: 60_000,
   });
 
   return { data, isLoading, isError };
