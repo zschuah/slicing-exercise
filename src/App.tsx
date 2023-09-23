@@ -2,7 +2,7 @@ import { useState } from "react";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { Link, Route, Routes } from "react-router-dom";
 import "./App.css";
-import Navbar from "./components/Navbar";
+import Drawer from "./components/Drawer";
 import Contacts from "./pages/Contacts";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
@@ -25,7 +25,7 @@ function App() {
         />
       </section>
 
-      <Navbar isShowNav={isShowNav} setIsShowNav={setIsShowNav} />
+      <Drawer isShowNav={isShowNav} setIsShowNav={setIsShowNav} />
 
       <Routes>
         <Route path="/" element={<Login />} />

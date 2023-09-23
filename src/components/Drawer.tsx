@@ -1,34 +1,35 @@
 import { twMerge } from "tailwind-merge";
-import NavbarLink from "../layout/NavbarLink";
+import DrawerLink from "../layout/DrawerLink";
 
 type PropTypes = {
   isShowNav: boolean;
   setIsShowNav: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
-const Navbar = ({ isShowNav, setIsShowNav }: PropTypes) => {
+const Drawer = ({ isShowNav, setIsShowNav }: PropTypes) => {
   return (
     <section
       className={twMerge(
         "absolute inset-0 flex",
         !isShowNav && "translate-x-full",
-        "transition duration-500"
+        "transition"
       )}
     >
       <div className="flex-1" onClick={() => setIsShowNav(false)}></div>
-      <nav className="bg-slate-200 w-80">
+
+      <nav className="bg-slate-100 w-80 shadow-2xl">
         <ul className="mt-0" onClick={() => setIsShowNav(false)}>
           <li>
-            <NavbarLink to="/contacts">My Contacts</NavbarLink>
+            <DrawerLink to="/contacts">My Contacts</DrawerLink>
           </li>
           <li>
-            <NavbarLink to="/">My Profile</NavbarLink>
+            <DrawerLink to="/">My Profile</DrawerLink>
           </li>
           <li>
-            <NavbarLink to="/">Edit Profile</NavbarLink>
+            <DrawerLink to="/">Edit Profile</DrawerLink>
           </li>
           <li>
-            <NavbarLink to="/">Logout</NavbarLink>
+            <DrawerLink to="/">Logout</DrawerLink>
           </li>
         </ul>
       </nav>
@@ -36,4 +37,4 @@ const Navbar = ({ isShowNav, setIsShowNav }: PropTypes) => {
   );
 };
 
-export default Navbar;
+export default Drawer;
