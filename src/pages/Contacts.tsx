@@ -51,9 +51,9 @@ const Contacts = () => {
     <div className="h-screen bg-bubbles--blue overflow-auto">
       <section className="mt-20 max-w-7xl mx-auto px-4">
         <div className="flex">
-          <h1 className="text-4xl">
+          <h2 className="text-4xl">
             My <span className="font-bold">Contacts</span>
-          </h1>
+          </h2>
           <div className="border-b-4 border-black flex-1 ml-2"></div>
         </div>
 

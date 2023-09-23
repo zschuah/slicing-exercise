@@ -6,6 +6,7 @@ import Drawer from "./components/Drawer";
 import Contacts from "./pages/Contacts";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
+import Profile from "./pages/Profile";
 
 function App() {
   const [isShowNav, setIsShowNav] = useState(false);
@@ -31,6 +32,7 @@ function App() {
         <Route path="/" element={<Login />} />
         <Route path="/register" element={<Register />} />
         <Route path="/contacts" element={<Contacts />} />
+        <Route path="/profile" element={<Profile />} />
       </Routes>
     </div>
   );

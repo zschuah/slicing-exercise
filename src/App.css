@@ -5,6 +5,7 @@
     ),
     url("./assets/bubbles.jpg");
   background-size: cover;
+  background-position: center;
 }
 
 .bg-bubbles--blue {
@@ -14,6 +15,7 @@
     ),
     url("./assets/bubbles.jpg");
   background-size: cover;
+  background-position: center;
 }
 
 /* OVERLAY PORTION CONVERTED TO TAILWIND CONFIG */

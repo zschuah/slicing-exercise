@@ -33,7 +33,7 @@ const Drawer = ({ isShowNav, setIsShowNav }: PropTypes) => {
             <DrawerLink to="/contacts">My Contacts</DrawerLink>
           </li>
           <li>
-            <DrawerLink to="/">My Profile</DrawerLink>
+            <DrawerLink to="/profile">My Profile</DrawerLink>
           </li>
           <li>
             <DrawerLink to="/">Edit Profile</DrawerLink>
