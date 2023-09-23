@@ -12,7 +12,7 @@ const Drawer = ({ isShowNav, setIsShowNav }: PropTypes) => {
       className={twMerge(
         "absolute inset-0 flex",
         !isShowNav && "translate-x-full",
-        "transition"
+        "transition duration-500"
       )}
     >
       <div className="flex-1" onClick={() => setIsShowNav(false)}></div>
