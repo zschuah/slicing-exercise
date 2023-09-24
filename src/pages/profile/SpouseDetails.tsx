@@ -4,13 +4,22 @@ const SpouseDetails = () => {
   const { profile } = useProfileContext();
 
   return (
-    <div>
-      <h3>Spouse Details</h3>
+    <section className="py-8 space-y-4">
+      <div>
+        <p className="font-bold">Salutation</p>
+        <p>{profile.spouseSalutation}</p>
+      </div>
 
-      <p>{profile.spouseSalutation}</p>
-      <p>{profile.spouseFirstName}</p>
-      <p>{profile.spouseLastName}</p>
-    </div>
+      <div>
+        <p className="font-bold">First name</p>
+        <p>{profile.spouseFirstName}</p>
+      </div>
+
+      <div>
+        <p className="font-bold">Last name</p>
+        <p>{profile.spouseLastName}</p>
+      </div>
+    </section>
   );
 };
 

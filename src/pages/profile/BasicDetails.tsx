@@ -5,15 +5,31 @@ const BasicDetails = () => {
   const { profile } = useProfileContext();
 
   return (
-    <div>
-      <h3>Basic Details</h3>
-      <IoPersonSharp className="text-7xl" />
+    <section className="p-8 flex gap-8">
+      <IoPersonSharp className="text-7xl mt-4" />
 
-      <p>{profile.salutation}</p>
-      <p>{profile.firstName}</p>
-      <p>{profile.lastName}</p>
-      <p>{profile.emailAddress}</p>
-    </div>
+      <div className="space-y-4">
+        <div>
+          <p className="font-bold">Salutation*</p>
+          <p>{profile.salutation}</p>
+        </div>
+
+        <div>
+          <p className="font-bold">First name*</p>
+          <p>{profile.firstName}</p>
+        </div>
+
+        <div>
+          <p className="font-bold">Last name*</p>
+          <p>{profile.lastName}</p>
+        </div>
+
+        <div>
+          <p className="font-bold">Email address*</p>
+          <p>{profile.emailAddress}</p>
+        </div>
+      </div>
+    </section>
   );
 };
 

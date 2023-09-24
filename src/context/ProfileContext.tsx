@@ -33,7 +33,7 @@ export const ProfileProvider = ({ children }: { children: ReactNode }) => {
     salutation: "Mr.",
     firstName: "John",
     lastName: "Doe",
-    emailAddress: "email@email",
+    emailAddress: "email@email.com",
     mobileNumber: "mobile",
     homeAddress: "home",
     country: "country",

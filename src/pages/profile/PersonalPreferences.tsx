@@ -4,14 +4,27 @@ const PersonalPreferences = () => {
   const { profile } = useProfileContext();
 
   return (
-    <div>
-      <h3>Personal Preferences</h3>
+    <section className="py-8 space-y-4">
+      <div>
+        <p className="font-bold">Hobbies and interests</p>
+        <p>{profile.hobbies}</p>
+      </div>
 
-      <p>{profile.hobbies}</p>
-      <p>{profile.sports}</p>
-      <p>{profile.music}</p>
-      <p>{profile.movies}</p>
-    </div>
+      <div>
+        <p className="font-bold">Favorite sport(s)</p>
+        <p>{profile.sports}</p>
+      </div>
+
+      <div>
+        <p className="font-bold">Preferred music genre(s)</p>
+        <p>{profile.music}</p>
+      </div>
+
+      <div>
+        <p className="font-bold">Preferred movie/TV show(s)</p>
+        <p>{profile.movies}</p>
+      </div>
+    </section>
   );
 };
 
