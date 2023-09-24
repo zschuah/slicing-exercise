@@ -3,14 +3,18 @@ import { GiHamburgerMenu } from "react-icons/gi";
 import { Link, Navigate, Route, Routes } from "react-router-dom";
 import "./App.css";
 import Drawer from "./components/Drawer";
-import AdditionalDetails from "./components/profile/AdditionalDetails";
-import BasicDetails from "./components/profile/BasicDetails";
-import PersonalPreferences from "./components/profile/PersonalPreferences";
-import SpouseDetails from "./components/profile/SpouseDetails";
 import Contacts from "./pages/Contacts";
 import Login from "./pages/Login";
 import Profile from "./pages/Profile";
 import Register from "./pages/Register";
+import AdditionalDetails from "./pages/profile/AdditionalDetails";
+import AdditionalDetailsEdit from "./pages/profile/AdditionalDetailsEdit";
+import BasicDetails from "./pages/profile/BasicDetails";
+import BasicDetailsEdit from "./pages/profile/BasicDetailsEdit";
+import PersonalPreferences from "./pages/profile/PersonalPreferences";
+import PersonalPreferencesEdit from "./pages/profile/PersonalPreferencesEdit";
+import SpouseDetails from "./pages/profile/SpouseDetails";
+import SpouseDetailsEdit from "./pages/profile/SpouseDetailsEdit";
 
 function App() {
   const [isShowNav, setIsShowNav] = useState(false);
@@ -25,7 +29,7 @@ function App() {
           LOGO
         </Link>
         <GiHamburgerMenu
-          className="absolute top-4 right-8 lg:right-4 text-3xl cursor-pointer hover:opacity-50"
+          className="absolute top-4 right-8 lg:right-4 text-4xl cursor-pointer hover:opacity-50"
           onClick={() => setIsShowNav(true)}
         />
       </section>
@@ -39,9 +43,13 @@ function App() {
         <Route path="/profile" element={<Profile />}>
           <Route index element={<Navigate to="basic" />} />
           <Route path="basic" element={<BasicDetails />} />
+          <Route path="basic/edit" element={<BasicDetailsEdit />} />
           <Route path="additional" element={<AdditionalDetails />} />
+          <Route path="additional/edit" element={<AdditionalDetailsEdit />} />
           <Route path="spouse" element={<SpouseDetails />} />
+          <Route path="spouse/edit" element={<SpouseDetailsEdit />} />
           <Route path="personal" element={<PersonalPreferences />} />
+          <Route path="personal/edit" element={<PersonalPreferencesEdit />} />
         </Route>
       </Routes>
     </div>

@@ -1,7 +1,12 @@
+import { BsChevronLeft } from "react-icons/bs";
+import { RiBallPenFill } from "react-icons/ri";
+import { Link, Outlet, useLocation } from "react-router-dom";
 import TabDotted from "../layout/TabDotted";
-import { Outlet } from "react-router-dom";
 
 const Profile = () => {
+  const location = useLocation();
+  const isEdit = location.pathname.includes("edit");
+
   return (
     <div className="h-screen bg-bubbles--blue overflow-auto">
       <section className="mt-20 max-w-7xl mx-auto px-4">
@@ -28,11 +33,28 @@ const Profile = () => {
           </aside>
 
           <section className="flex-1">
-            <div className="flex">
+            <div className="flex items-end">
               <h2 className="text-4xl">
-                My <span className="font-bold">Profile</span>
+                {isEdit ? <span>Edit </span> : <span>My </span>}
+                <span className="font-bold">Profile</span>
               </h2>
-              <div className="border-b-4 border-black flex-1 ml-2"></div>
+              <div className="border-b-4 border-black flex-1 ml-2 mr-6"></div>
+
+              {isEdit ? (
+                <>
+                  <BsChevronLeft className="text-xl" />
+                  <Link to=".." relative="path" className="underline ml-1">
+                    Go back to My Profile
+                  </Link>
+                </>
+              ) : (
+                <>
+                  <Link to="./edit" relative="path" className="underline mr-1">
+                    Edit profile
+                  </Link>
+                  <RiBallPenFill className="text-xl" />
+                </>
+              )}
             </div>
 
             <Outlet />
