@@ -12,9 +12,9 @@ const ButtonBlack = ({ children, onClick, className, ...rest }: PropTypes) => {
     <button
       onClick={onClick}
       className={twMerge(
-        "py-2 px-10 bg-black text-white",
+        "p-2 w-32 bg-black text-white uppercase",
         "hover:bg-zinc-800 active:bg-zinc-600",
-        "disabled:bg-zinc-300 disabled:cursor-not-allowed",
+        "disabled:bg-zinc-400 disabled:cursor-not-allowed",
         className
       )}
       {...rest}

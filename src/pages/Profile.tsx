@@ -7,6 +7,13 @@ const Profile = () => {
   const location = useLocation();
   const isEdit = location.pathname.includes("edit");
 
+  const handleUrlEdit = (url: string) => {
+    if (isEdit) {
+      return url + "/edit";
+    }
+    return url;
+  };
+
   return (
     <div className="h-screen bg-bubbles--blue overflow-auto">
       <section className="mt-20 max-w-7xl mx-auto px-4">
@@ -14,18 +21,22 @@ const Profile = () => {
           <aside className="w-48 mr-10 pt-20">
             <ul className="border-t border-black border-dashed">
               <li>
-                <TabDotted to="/profile/basic">Basic Details</TabDotted>
+                <TabDotted to={handleUrlEdit("/profile/basic")}>
+                  Basic Details
+                </TabDotted>
               </li>
               <li>
-                <TabDotted to="/profile/additional">
+                <TabDotted to={handleUrlEdit("/profile/additional")}>
                   Additional Details
                 </TabDotted>
               </li>
               <li>
-                <TabDotted to="/profile/spouse">Spouse Details</TabDotted>
+                <TabDotted to={handleUrlEdit("/profile/spouse")}>
+                  Spouse Details
+                </TabDotted>
               </li>
               <li>
-                <TabDotted to="/profile/personal">
+                <TabDotted to={handleUrlEdit("/profile/personal")}>
                   Personal Preferences
                 </TabDotted>
               </li>
