@@ -1,6 +1,7 @@
 import { BsChevronLeft } from "react-icons/bs";
 import { RiBallPenFill } from "react-icons/ri";
 import { Link, Outlet, useLocation } from "react-router-dom";
+import { ProfileProvider } from "../context/ProfileContext";
 import TabDotted from "../layout/TabDotted";
 
 const Profile = () => {
@@ -68,7 +69,9 @@ const Profile = () => {
               )}
             </div>
 
-            <Outlet />
+            <ProfileProvider>
+              <Outlet />
+            </ProfileProvider>
           </section>
         </div>
       </section>
