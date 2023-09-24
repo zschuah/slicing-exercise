@@ -11,22 +11,22 @@ const BasicDetails = () => {
       <div className="space-y-4">
         <div>
           <p className="font-bold">Salutation*</p>
-          <p>{profile.salutation}</p>
+          <p>{profile.salutation || "-"}</p>
         </div>
 
         <div>
           <p className="font-bold">First name*</p>
-          <p>{profile.firstName}</p>
+          <p>{profile.firstName || "-"}</p>
         </div>
 
         <div>
           <p className="font-bold">Last name*</p>
-          <p>{profile.lastName}</p>
+          <p>{profile.lastName || "-"}</p>
         </div>
 
         <div>
           <p className="font-bold">Email address*</p>
-          <p>{profile.emailAddress}</p>
+          <p>{profile.emailAddress || "-"}</p>
         </div>
       </div>
     </section>

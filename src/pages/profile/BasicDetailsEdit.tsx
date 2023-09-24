@@ -13,7 +13,7 @@ const BasicDetailsEdit = () => {
       <div className="space-y-4">
         <div>
           <p className="font-bold">Salutation*</p>
-          <SelectGray className="w-full">
+          <SelectGray className="w-full" defaultValue={profile.salutation}>
             <option value="" disabled hidden>
               Select salutation
             </option>
