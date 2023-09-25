@@ -1,7 +1,7 @@
-import { Contact } from "../../hooks/useFetchContacts";
+import { ContactType } from "../../hooks/useFetchContacts";
 
 type PropTypes = {
-  contact: Contact;
+  contact: ContactType;
 };
 
 const ContactsCard = ({ contact }: PropTypes) => {

@@ -2,7 +2,7 @@ import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import { URL_CONTACTS } from "../utils/constants";
 
-export type Contact = {
+export type ContactType = {
   image: string;
   name: string;
   email: string;
@@ -13,7 +13,7 @@ export type Contact = {
 };
 
 const useFetchContacts = () => {
-  const { data, isLoading, isError } = useQuery<Contact[], Error>({
+  const { data, isLoading, isError } = useQuery<ContactType[], Error>({
     queryKey: ["contacts"],
     queryFn: async () => {
       const res = await axios.get(URL_CONTACTS);

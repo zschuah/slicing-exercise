@@ -1,8 +1,8 @@
-import { Contact } from "../../hooks/useFetchContacts";
+import { ContactType } from "../../hooks/useFetchContacts";
 import ContactsCard from "./ContactsCard";
 
 type PropTypes = {
-  filteredContactList: Contact[];
+  filteredContactList: ContactType[];
   itemOffset: number;
   itemsPerPage: number;
   isLoading: boolean;
