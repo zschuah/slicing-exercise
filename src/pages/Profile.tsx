@@ -1,4 +1,4 @@
-import { Outlet } from "react-router-dom";
+import { Outlet, useNavigate } from "react-router-dom";
 import ProfileHeader from "../components/profile/ProfileHeader";
 import ProfileAside from "../components/profile/ProfileAside";
 import { ProfileType, useProfileContext } from "../context/ProfileContext";
@@ -6,15 +6,21 @@ import { ProfileType, useProfileContext } from "../context/ProfileContext";
 export type ProfileOutletContext = {
   profile: ProfileType;
   handleFormSubmit: (data: Partial<ProfileType>) => void;
+  handleCancel: () => void;
 };
 
 const Profile = () => {
+  const navigate = useNavigate();
   const { profile, setProfile } = useProfileContext();
 
   const handleFormSubmit = (data: Partial<ProfileType>) => {
     console.log(data);
     const newProfile: ProfileType = { ...profile, ...data };
     setProfile(newProfile);
+  };
+
+  const handleCancel = () => {
+    navigate("..", { relative: "path" });
   };
 
   return (
@@ -25,7 +31,7 @@ const Profile = () => {
 
           <section className="flex-1">
             <ProfileHeader />
-            <Outlet context={{ profile, handleFormSubmit }} />
+            <Outlet context={{ profile, handleFormSubmit, handleCancel }} />
           </section>
         </div>
       </section>

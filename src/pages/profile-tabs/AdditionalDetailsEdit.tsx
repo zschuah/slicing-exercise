@@ -21,9 +21,8 @@ type FormValues = Pick<
 >;
 
 const AdditionalDetailsEdit = () => {
-  const { profile, handleFormSubmit } =
+  const { profile, handleFormSubmit, handleCancel } =
     useOutletContext<ProfileOutletContext>();
-
   const {
     register,
     handleSubmit,
@@ -152,7 +151,7 @@ const AdditionalDetailsEdit = () => {
           Save & Update
         </ButtonBlack>
         <ButtonBlack
-          onClick={() => reset()}
+          onClick={handleCancel}
           type="button"
           className="ml-1 px-8"
           variant="outline"

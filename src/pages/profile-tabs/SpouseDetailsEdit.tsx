@@ -12,9 +12,8 @@ type FormValues = Pick<
 >;
 
 const SpouseDetailsEdit = () => {
-  const { profile, handleFormSubmit } =
+  const { profile, handleFormSubmit, handleCancel } =
     useOutletContext<ProfileOutletContext>();
-
   const { register, handleSubmit, reset } = useForm<FormValues>();
 
   return (
@@ -59,7 +58,7 @@ const SpouseDetailsEdit = () => {
       <div className="pt-4">
         <ButtonBlack>Save & Update</ButtonBlack>
         <ButtonBlack
-          onClick={() => reset()}
+          onClick={handleCancel}
           type="button"
           className="ml-1 px-8"
           variant="outline"

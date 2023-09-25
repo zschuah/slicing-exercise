@@ -8,9 +8,8 @@ import { ProfileOutletContext } from "../Profile";
 type FormValues = Pick<ProfileType, "hobbies" | "sports" | "music" | "movies">;
 
 const PersonalPreferncesEdit = () => {
-  const { profile, handleFormSubmit } =
+  const { profile, handleFormSubmit, handleCancel } =
     useOutletContext<ProfileOutletContext>();
-
   const { register, handleSubmit, reset } = useForm<FormValues>();
 
   return (
@@ -57,7 +56,7 @@ const PersonalPreferncesEdit = () => {
       <div className="pt-4">
         <ButtonBlack>Save & Update</ButtonBlack>
         <ButtonBlack
-          onClick={() => reset()}
+          onClick={handleCancel}
           type="button"
           className="ml-1 px-8"
           variant="outline"
