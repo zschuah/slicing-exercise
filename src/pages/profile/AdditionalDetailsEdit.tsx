@@ -1,45 +1,127 @@
 import { useProfileContext } from "../../context/ProfileContext";
 import InputGray from "../../layout/InputGray";
 import SelectGray from "../../layout/SelectGray";
+import { useForm } from "react-hook-form";
+import ButtonBlack from "../../layout/ButtonBlack";
+import { format, sub } from "date-fns";
+
+type FormValues = {
+  mobileNumber: string;
+  homeAddress: string;
+  country: string;
+  postalCode: string;
+  nationality: string;
+  dateOfBirth: string;
+  gender: string;
+  maritalStatus: string;
+};
 
 const AdditionalDetailsEdit = () => {
   const { profile } = useProfileContext();
+  const {
+    register,
+    handleSubmit,
+    formState: { isSubmitted, isValid, errors },
+    reset,
+  } = useForm<FormValues>();
+
+  const handleFormSubmit = (data: FormValues) => {
+    console.log(data);
+  };
 
   return (
-    <section className="py-8 space-y-4 inline-block">
+    <form
+      className="py-8 space-y-4 w-80"
+      onSubmit={handleSubmit(handleFormSubmit)}
+    >
       <div>
         <p className="font-bold">Mobile number*</p>
-        <InputGray defaultValue={profile.mobileNumber} />
+        <InputGray
+          className="w-full"
+          defaultValue={profile.mobileNumber}
+          {...register("mobileNumber", { required: true })}
+        />
+        {errors.mobileNumber && (
+          <small className="italic text-red-500">
+            Please enter your mobile number.
+          </small>
+        )}
       </div>
 
       <div>
         <p className="font-bold">Home address*</p>
-        <InputGray defaultValue={profile.homeAddress} />
+        <InputGray
+          className="w-full"
+          defaultValue={profile.homeAddress}
+          {...register("homeAddress", { required: true })}
+        />
+        {errors.homeAddress && (
+          <small className="italic text-red-500">
+            Please enter your home address.
+          </small>
+        )}
       </div>
 
       <div>
         <p className="font-bold">Country*</p>
-        <InputGray defaultValue={profile.country} />
+        <InputGray
+          className="w-full"
+          defaultValue={profile.country}
+          {...register("country", { required: true })}
+        />
+        {errors.country && (
+          <small className="italic text-red-500">
+            Please enter your country.
+          </small>
+        )}
       </div>
 
       <div>
         <p className="font-bold">Postal Code*</p>
-        <InputGray defaultValue={profile.postalCode} />
+        <InputGray
+          className="w-full"
+          defaultValue={profile.postalCode}
+          {...register("postalCode", { required: true })}
+        />
+        {errors.postalCode && (
+          <small className="italic text-red-500">
+            Please enter your postal code.
+          </small>
+        )}
       </div>
 
       <div>
         <p className="font-bold">Nationality*</p>
-        <InputGray defaultValue={profile.nationality} />
+        <InputGray
+          className="w-full"
+          defaultValue={profile.nationality}
+          {...register("nationality", { required: true })}
+        />
+        {errors.nationality && (
+          <small className="italic text-red-500">
+            Please enter your nationality.
+          </small>
+        )}
       </div>
 
       <div>
         <p className="font-bold">Date of birth</p>
-        <InputGray defaultValue={profile.dateOfBirth} />
+        <InputGray
+          type="date"
+          max={format(sub(new Date(), { years: 17 }), "yyyy-MM-dd")}
+          className="w-full"
+          defaultValue={profile.dateOfBirth}
+          {...register("dateOfBirth")}
+        />
       </div>
 
       <div>
         <p className="font-bold">Gender</p>
-        <SelectGray defaultValue={profile.gender} className="w-full">
+        <SelectGray
+          defaultValue={profile.gender}
+          className="w-full"
+          {...register("gender")}
+        >
           <option value="" disabled hidden>
             Select gender
           </option>
@@ -50,7 +132,11 @@ const AdditionalDetailsEdit = () => {
 
       <div>
         <p className="font-bold">Marital status</p>
-        <SelectGray defaultValue={profile.maritalStatus} className="w-full">
+        <SelectGray
+          defaultValue={profile.maritalStatus}
+          className="w-full"
+          {...register("maritalStatus")}
+        >
           <option value="" disabled hidden>
             Select marital status
           </option>
@@ -58,7 +144,23 @@ const AdditionalDetailsEdit = () => {
           <option value="Married">Married</option>
         </SelectGray>
       </div>
-    </section>
+
+      <div className="pt-4">
+        <ButtonBlack disabled={isSubmitted && !isValid}>
+          Save & Update
+        </ButtonBlack>
+        <ButtonBlack
+          onClick={() => reset()}
+          type="button"
+          className="ml-1 px-8"
+          variant="outline"
+        >
+          Cancel
+        </ButtonBlack>
+      </div>
+
+      <p className="italic text-xs">* Mandatory field</p>
+    </form>
   );
 };
 

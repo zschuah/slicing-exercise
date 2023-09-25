@@ -16,7 +16,7 @@ const SelectGray = forwardRef<HTMLSelectElement, PropTypes>(
         value={value}
         onChange={onChange}
         className={twMerge(
-          "flex-1 px-2 py-1 border border-black bg-gray-500/20",
+          "px-2 py-1 border border-black bg-gray-500/20",
           "italic disabled:cursor-not-allowed",
           className
         )}

@@ -15,7 +15,6 @@ type FormValues = {
 
 const BasicDetailsEdit = () => {
   const { profile } = useProfileContext();
-
   const {
     register,
     handleSubmit,
@@ -113,17 +112,19 @@ const BasicDetailsEdit = () => {
           )}
         </div>
 
-        <ButtonBlack disabled={isSubmitted && !isValid}>
-          Save & Update
-        </ButtonBlack>
-        <ButtonBlack
-          onClick={() => reset()}
-          type="button"
-          className="ml-1 px-8"
-          variant="outline"
-        >
-          Cancel
-        </ButtonBlack>
+        <div className="pt-4">
+          <ButtonBlack disabled={isSubmitted && !isValid}>
+            Save & Update
+          </ButtonBlack>
+          <ButtonBlack
+            onClick={() => reset()}
+            type="button"
+            className="ml-1 px-8"
+            variant="outline"
+          >
+            Cancel
+          </ButtonBlack>
+        </div>
 
         <p className="italic text-xs">* Mandatory field</p>
       </form>

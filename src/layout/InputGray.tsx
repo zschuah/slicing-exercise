@@ -2,7 +2,7 @@ import { forwardRef } from "react";
 import { twMerge } from "tailwind-merge";
 
 type PropTypes = {
-  type?: "text" | "password";
+  type?: "text" | "password" | "date";
   value?: string;
   onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
   className: string;
