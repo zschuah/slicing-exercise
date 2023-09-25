@@ -6,14 +6,14 @@ import Contacts from "./pages/Contacts";
 import Login from "./pages/Login";
 import Profile from "./pages/Profile";
 import Register from "./pages/Register";
-import AdditionalDetails from "./pages/profile/AdditionalDetails";
-import AdditionalDetailsEdit from "./pages/profile/AdditionalDetailsEdit";
-import BasicDetails from "./pages/profile/BasicDetails";
-import BasicDetailsEdit from "./pages/profile/BasicDetailsEdit";
-import PersonalPreferences from "./pages/profile/PersonalPreferences";
-import PersonalPreferencesEdit from "./pages/profile/PersonalPreferencesEdit";
-import SpouseDetails from "./pages/profile/SpouseDetails";
-import SpouseDetailsEdit from "./pages/profile/SpouseDetailsEdit";
+import AdditionalDetails from "./pages/profile-tabs/AdditionalDetails";
+import AdditionalDetailsEdit from "./pages/profile-tabs/AdditionalDetailsEdit";
+import BasicDetails from "./pages/profile-tabs/BasicDetails";
+import BasicDetailsEdit from "./pages/profile-tabs/BasicDetailsEdit";
+import PersonalPreferences from "./pages/profile-tabs/PersonalPreferences";
+import PersonalPreferencesEdit from "./pages/profile-tabs/PersonalPreferencesEdit";
+import SpouseDetails from "./pages/profile-tabs/SpouseDetails";
+import SpouseDetailsEdit from "./pages/profile-tabs/SpouseDetailsEdit";
 
 const AppRoutes = () => {
   const { isAuth } = useAuthContext();

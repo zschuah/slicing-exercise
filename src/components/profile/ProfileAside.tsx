@@ -1,8 +1,8 @@
 import { useLocation } from "react-router-dom";
-import { useProfileContext } from "../context/ProfileContext";
-import TabDotted from "../layout/TabDotted";
+import { useProfileContext } from "../../context/ProfileContext";
+import TabDotted from "../../layout/TabDotted";
 
-const ProfileTabs = () => {
+const ProfileAside = () => {
   const { profile } = useProfileContext();
   const location = useLocation();
   const isEdit = location.pathname.includes("edit");
@@ -44,4 +44,4 @@ const ProfileTabs = () => {
   );
 };
 
-export default ProfileTabs;
+export default ProfileAside;

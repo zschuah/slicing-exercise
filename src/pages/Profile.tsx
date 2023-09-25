@@ -1,6 +1,6 @@
 import { Outlet } from "react-router-dom";
-import ProfileHeader from "../components/ProfileHeader";
-import ProfileTabs from "../components/ProfileTabs";
+import ProfileHeader from "../components/profile/ProfileHeader";
+import ProfileAside from "../components/profile/ProfileAside";
 import { ProfileType, useProfileContext } from "../context/ProfileContext";
 
 export type ProfileOutletContext = {
@@ -21,7 +21,7 @@ const Profile = () => {
     <div className="h-screen bg-bubbles--blue overflow-auto">
       <section className="mt-20 max-w-7xl mx-auto px-4">
         <div className="flex items-start">
-          <ProfileTabs />
+          <ProfileAside />
 
           <section className="flex-1">
             <ProfileHeader />
