@@ -1,10 +1,12 @@
 import { BsChevronLeft } from "react-icons/bs";
 import { RiBallPenFill } from "react-icons/ri";
 import { Link, Outlet, useLocation } from "react-router-dom";
-import { ProfileProvider } from "../context/ProfileContext";
+import { useProfileContext } from "../context/ProfileContext";
 import TabDotted from "../layout/TabDotted";
 
 const Profile = () => {
+  const { profile } = useProfileContext();
+
   const location = useLocation();
   const isEdit = location.pathname.includes("edit");
 
@@ -31,11 +33,13 @@ const Profile = () => {
                   Additional Details
                 </TabDotted>
               </li>
-              <li>
-                <TabDotted to={handleUrlEdit("/profile/spouse")}>
-                  Spouse Details
-                </TabDotted>
-              </li>
+              {profile.maritalStatus === "Married" && (
+                <li>
+                  <TabDotted to={handleUrlEdit("/profile/spouse")}>
+                    Spouse Details
+                  </TabDotted>
+                </li>
+              )}
               <li>
                 <TabDotted to={handleUrlEdit("/profile/personal")}>
                   Personal Preferences
@@ -69,9 +73,7 @@ const Profile = () => {
               )}
             </div>
 
-            <ProfileProvider>
-              <Outlet />
-            </ProfileProvider>
+            <Outlet />
           </section>
         </div>
       </section>

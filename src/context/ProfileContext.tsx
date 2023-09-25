@@ -41,7 +41,7 @@ export const ProfileProvider = ({ children }: { children: ReactNode }) => {
     nationality: "",
     dateOfBirth: "",
     gender: "",
-    maritalStatus: "",
+    maritalStatus: "Married",
     spouseSalutation: "",
     spouseFirstName: "",
     spouseLastName: "",

@@ -15,6 +15,7 @@ import PersonalPreferences from "./pages/profile/PersonalPreferences";
 import PersonalPreferencesEdit from "./pages/profile/PersonalPreferencesEdit";
 import SpouseDetails from "./pages/profile/SpouseDetails";
 import SpouseDetailsEdit from "./pages/profile/SpouseDetailsEdit";
+import { ProfileProvider } from "./context/ProfileContext";
 
 function App() {
   const [isShowNav, setIsShowNav] = useState(false);
@@ -40,7 +41,14 @@ function App() {
         <Route path="/" element={<Login />} />
         <Route path="/register" element={<Register />} />
         <Route path="/contacts" element={<Contacts />} />
-        <Route path="/profile" element={<Profile />}>
+        <Route
+          path="/profile"
+          element={
+            <ProfileProvider>
+              <Profile />
+            </ProfileProvider>
+          }
+        >
           <Route index element={<Navigate to="basic" />} />
           <Route path="basic" element={<BasicDetails />} />
           <Route path="basic/edit" element={<BasicDetailsEdit />} />
