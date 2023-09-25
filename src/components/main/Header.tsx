@@ -1,6 +1,6 @@
 import { GiHamburgerMenu } from "react-icons/gi";
 import { Link } from "react-router-dom";
-import { useAuthContext } from "../context/AuthContext";
+import { useAuthContext } from "../../context/AuthContext";
 
 type PropTypes = {
   setIsShowNav: React.Dispatch<React.SetStateAction<boolean>>;

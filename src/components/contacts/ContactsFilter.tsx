@@ -1,4 +1,4 @@
-import SelectGray from "../layout/SelectGray";
+import SelectGray from "../../layout/SelectGray";
 
 type PropTypes = {
   filterGender: string;

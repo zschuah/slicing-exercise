@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 import ReactPaginate from "react-paginate";
-import ContactsFilter from "../components/ContactsFilter";
-import ContactsGrid from "../components/ContactsGrid";
+import ContactsFilter from "../components/contacts/ContactsFilter";
+import ContactsGrid from "../components/contacts/ContactsGrid";
 import useFetchContacts from "../hooks/useFetchContacts";
 
 const Contacts = () => {

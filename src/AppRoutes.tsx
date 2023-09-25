@@ -29,9 +29,13 @@ const AppRoutes = () => {
       <Route
         path="/profile"
         element={
-          <ProfileProvider>
-            <Profile />
-          </ProfileProvider>
+          isAuth ? (
+            <ProfileProvider>
+              <Profile />
+            </ProfileProvider>
+          ) : (
+            <Navigate to="/" />
+          )
         }
       >
         <Route index element={<Navigate to="basic" />} />
