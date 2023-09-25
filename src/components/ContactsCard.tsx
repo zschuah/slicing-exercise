@@ -1,4 +1,4 @@
-import { Contact } from "../pages/Contacts";
+import { Contact } from "../hooks/useFetchContacts";
 
 type PropTypes = {
   contact: Contact;

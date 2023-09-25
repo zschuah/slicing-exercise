@@ -23,7 +23,9 @@ const ContactsFilter = ({
     <section className="mt-4 space-x-2 text-right">
       <SelectGray
         value={filterGender}
-        onChange={(e) => setFilterGender(e.target.value)}
+        onChange={(e: React.ChangeEvent<HTMLSelectElement>) =>
+          setFilterGender(e.target.value)
+        }
         disabled={isLoading || isError}
       >
         <option value="" disabled hidden>
@@ -36,7 +38,9 @@ const ContactsFilter = ({
 
       <SelectGray
         value={filterCountry}
-        onChange={(e) => setFilterCountry(e.target.value)}
+        onChange={(e: React.ChangeEvent<HTMLSelectElement>) =>
+          setFilterCountry(e.target.value)
+        }
         disabled={isLoading || isError}
       >
         <option value="" disabled hidden>
