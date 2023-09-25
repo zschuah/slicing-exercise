@@ -15,7 +15,7 @@ const InputGray = forwardRef<HTMLInputElement, PropTypes>(
       <input
         type={type || "text"}
         className={twMerge(
-          "flex-1 px-2 py-1 border border-black bg-gray-500/20",
+          "px-2 py-1 border border-black bg-gray-500/20",
           className
         )}
         value={value}
