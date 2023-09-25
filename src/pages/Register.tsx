@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import RegisterForm, { FormValues } from "../components/RegisterForm";
 
 const Register = () => {
@@ -22,6 +23,13 @@ const Register = () => {
         <div className="border-t-4 border-black w-1/2 mx-auto mt-4"></div>
 
         <RegisterForm handleFormSubmit={handleFormSubmit} />
+
+        <p className="text-center">
+          <span>Already registered? </span>
+          <Link className="underline" to="/">
+            Login here.
+          </Link>
+        </p>
       </section>
 
       {isShowError && (
