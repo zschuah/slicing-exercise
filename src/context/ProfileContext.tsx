@@ -31,8 +31,8 @@ const ProfileContext = createContext<ProfileContextType>(null!);
 export const ProfileProvider = ({ children }: { children: ReactNode }) => {
   const [profile, setProfile] = useState<ProfileType>({
     salutation: "",
-    firstName: "test",
-    lastName: "testlast",
+    firstName: "",
+    lastName: "",
     emailAddress: "",
     mobileNumber: "",
     homeAddress: "",

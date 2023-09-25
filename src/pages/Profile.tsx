@@ -17,6 +17,7 @@ const Profile = () => {
     console.log(data);
     const newProfile: ProfileType = { ...profile, ...data };
     setProfile(newProfile);
+    navigate("..", { relative: "path" });
   };
 
   const handleCancel = () => {
