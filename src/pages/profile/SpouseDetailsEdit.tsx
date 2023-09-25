@@ -1,15 +1,35 @@
+import { useForm } from "react-hook-form";
 import { useProfileContext } from "../../context/ProfileContext";
+import ButtonBlack from "../../layout/ButtonBlack";
 import InputGray from "../../layout/InputGray";
 import SelectGray from "../../layout/SelectGray";
 
+type FormValues = {
+  spouseSalutation: string;
+  spouseFirstName: string;
+  spouseLastName: string;
+};
+
 const SpouseDetailsEdit = () => {
   const { profile } = useProfileContext();
+  const { register, handleSubmit, reset } = useForm<FormValues>();
+
+  const handleFormSubmit = (data: FormValues) => {
+    console.log(data);
+  };
 
   return (
-    <section className="py-8 space-y-4 inline-block">
+    <form
+      className="py-8 space-y-4 w-80"
+      onSubmit={handleSubmit(handleFormSubmit)}
+    >
       <div>
         <p className="font-bold">Salutation</p>
-        <SelectGray defaultValue={profile.spouseSalutation} className="w-full">
+        <SelectGray
+          className="w-full"
+          defaultValue={profile.spouseSalutation}
+          {...register("spouseSalutation")}
+        >
           <option value="" disabled hidden>
             Select salutation
           </option>
@@ -21,14 +41,34 @@ const SpouseDetailsEdit = () => {
 
       <div>
         <p className="font-bold">First name</p>
-        <InputGray defaultValue={profile.spouseFirstName} />
+        <InputGray
+          className="w-full"
+          defaultValue={profile.spouseFirstName}
+          {...register("spouseFirstName")}
+        />
       </div>
 
       <div>
         <p className="font-bold">Last name</p>
-        <InputGray defaultValue={profile.spouseLastName} />
+        <InputGray
+          className="w-full"
+          defaultValue={profile.spouseLastName}
+          {...register("spouseLastName")}
+        />
       </div>
-    </section>
+
+      <div className="pt-4">
+        <ButtonBlack>Save & Update</ButtonBlack>
+        <ButtonBlack
+          onClick={() => reset()}
+          type="button"
+          className="ml-1 px-8"
+          variant="outline"
+        >
+          Cancel
+        </ButtonBlack>
+      </div>
+    </form>
   );
 };
 

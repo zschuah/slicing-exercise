@@ -1,9 +1,10 @@
+import { format, sub } from "date-fns";
+import { useForm } from "react-hook-form";
+import { twMerge } from "tailwind-merge";
 import { useProfileContext } from "../../context/ProfileContext";
+import ButtonBlack from "../../layout/ButtonBlack";
 import InputGray from "../../layout/InputGray";
 import SelectGray from "../../layout/SelectGray";
-import { useForm } from "react-hook-form";
-import ButtonBlack from "../../layout/ButtonBlack";
-import { format, sub } from "date-fns";
 
 type FormValues = {
   mobileNumber: string;
@@ -37,7 +38,7 @@ const AdditionalDetailsEdit = () => {
       <div>
         <p className="font-bold">Mobile number*</p>
         <InputGray
-          className="w-full"
+          className={twMerge("w-full", errors.mobileNumber && "border-red-500")}
           defaultValue={profile.mobileNumber}
           {...register("mobileNumber", { required: true })}
         />
@@ -51,7 +52,7 @@ const AdditionalDetailsEdit = () => {
       <div>
         <p className="font-bold">Home address*</p>
         <InputGray
-          className="w-full"
+          className={twMerge("w-full", errors.homeAddress && "border-red-500")}
           defaultValue={profile.homeAddress}
           {...register("homeAddress", { required: true })}
         />
@@ -65,7 +66,7 @@ const AdditionalDetailsEdit = () => {
       <div>
         <p className="font-bold">Country*</p>
         <InputGray
-          className="w-full"
+          className={twMerge("w-full", errors.country && "border-red-500")}
           defaultValue={profile.country}
           {...register("country", { required: true })}
         />
@@ -79,7 +80,7 @@ const AdditionalDetailsEdit = () => {
       <div>
         <p className="font-bold">Postal Code*</p>
         <InputGray
-          className="w-full"
+          className={twMerge("w-full", errors.postalCode && "border-red-500")}
           defaultValue={profile.postalCode}
           {...register("postalCode", { required: true })}
         />
@@ -93,7 +94,7 @@ const AdditionalDetailsEdit = () => {
       <div>
         <p className="font-bold">Nationality*</p>
         <InputGray
-          className="w-full"
+          className={twMerge("w-full", errors.nationality && "border-red-500")}
           defaultValue={profile.nationality}
           {...register("nationality", { required: true })}
         />
