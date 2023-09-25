@@ -6,7 +6,7 @@ const BasicDetails = () => {
 
   return (
     <section className="p-8 flex gap-8">
-      <IoPersonSharp className="text-7xl mt-4" />
+      <IoPersonSharp className="text-8xl mt-4" />
 
       <div className="space-y-4">
         <div>

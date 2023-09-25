@@ -28,7 +28,15 @@ const BasicDetailsEdit = () => {
 
   return (
     <div className="p-8 flex gap-8">
-      <IoPersonSharp className="text-7xl mt-4" />
+      <div className="flex flex-col items-center w-28">
+        <IoPersonSharp className="text-8xl mt-4" />
+        <div className="text-center">
+          <p className="text-sm underline">Upload image</p>
+          <p className="text-xs italic">
+            (JPG or PNG format with maximum size of 1 MB)
+          </p>
+        </div>
+      </div>
 
       <form
         className="space-y-4 w-80"
