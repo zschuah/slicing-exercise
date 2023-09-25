@@ -1,21 +1,21 @@
 import { useForm } from "react-hook-form";
-import { Profile, useProfileContext } from "../../context/ProfileContext";
+import { useOutletContext } from "react-router-dom";
+import { ProfileType } from "../../context/ProfileContext";
 import ButtonBlack from "../../layout/ButtonBlack";
 import InputGray from "../../layout/InputGray";
 import SelectGray from "../../layout/SelectGray";
+import { ProfileOutletContext } from "../Profile";
 
 type FormValues = Pick<
-  Profile,
+  ProfileType,
   "spouseSalutation" | "spouseFirstName" | "spouseLastName"
 >;
 
 const SpouseDetailsEdit = () => {
-  const { profile } = useProfileContext();
-  const { register, handleSubmit, reset } = useForm<FormValues>();
+  const { profile, handleFormSubmit } =
+    useOutletContext<ProfileOutletContext>();
 
-  const handleFormSubmit = (data: FormValues) => {
-    console.log(data);
-  };
+  const { register, handleSubmit, reset } = useForm<FormValues>();
 
   return (
     <form

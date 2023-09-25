@@ -1,17 +1,17 @@
 import { useForm } from "react-hook-form";
-import { Profile, useProfileContext } from "../../context/ProfileContext";
+import { useOutletContext } from "react-router-dom";
+import { ProfileType } from "../../context/ProfileContext";
 import ButtonBlack from "../../layout/ButtonBlack";
 import InputGray from "../../layout/InputGray";
+import { ProfileOutletContext } from "../Profile";
 
-type FormValues = Pick<Profile, "hobbies" | "sports" | "music" | "movies">;
+type FormValues = Pick<ProfileType, "hobbies" | "sports" | "music" | "movies">;
 
 const PersonalPreferncesEdit = () => {
-  const { profile } = useProfileContext();
-  const { register, handleSubmit, reset } = useForm<FormValues>();
+  const { profile, handleFormSubmit } =
+    useOutletContext<ProfileOutletContext>();
 
-  const handleFormSubmit = (data: FormValues) => {
-    console.log(data);
-  };
+  const { register, handleSubmit, reset } = useForm<FormValues>();
 
   return (
     <form

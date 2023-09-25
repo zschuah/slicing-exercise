@@ -1,6 +1,6 @@
 import { ReactNode, createContext, useContext, useState } from "react";
 
-export type Profile = {
+export type ProfileType = {
   salutation: "Mr." | "Ms." | "Mrs." | "";
   firstName: string;
   lastName: string;
@@ -23,16 +23,16 @@ export type Profile = {
 };
 
 type ProfileContextType = {
-  profile: Profile;
-  setProfile: React.Dispatch<React.SetStateAction<Profile>>;
+  profile: ProfileType;
+  setProfile: React.Dispatch<React.SetStateAction<ProfileType>>;
 };
 const ProfileContext = createContext<ProfileContextType>(null!);
 
 export const ProfileProvider = ({ children }: { children: ReactNode }) => {
-  const [profile, setProfile] = useState<Profile>({
+  const [profile, setProfile] = useState<ProfileType>({
     salutation: "",
-    firstName: "",
-    lastName: "",
+    firstName: "test",
+    lastName: "testlast",
     emailAddress: "",
     mobileNumber: "",
     homeAddress: "",

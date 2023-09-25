@@ -1,13 +1,15 @@
 import { format, sub } from "date-fns";
 import { useForm } from "react-hook-form";
+import { useOutletContext } from "react-router-dom";
 import { twMerge } from "tailwind-merge";
-import { Profile, useProfileContext } from "../../context/ProfileContext";
+import { ProfileType } from "../../context/ProfileContext";
 import ButtonBlack from "../../layout/ButtonBlack";
 import InputGray from "../../layout/InputGray";
 import SelectGray from "../../layout/SelectGray";
+import { ProfileOutletContext } from "../Profile";
 
 type FormValues = Pick<
-  Profile,
+  ProfileType,
   | "mobileNumber"
   | "homeAddress"
   | "country"
@@ -19,19 +21,15 @@ type FormValues = Pick<
 >;
 
 const AdditionalDetailsEdit = () => {
-  const { profile, setProfile } = useProfileContext();
+  const { profile, handleFormSubmit } =
+    useOutletContext<ProfileOutletContext>();
+
   const {
     register,
     handleSubmit,
     formState: { isSubmitted, isValid, errors },
     reset,
   } = useForm<FormValues>();
-
-  const handleFormSubmit = (data: FormValues) => {
-    console.log(data);
-    const newProfile: Profile = { ...profile, ...data };
-    setProfile(newProfile);
-  };
 
   return (
     <form

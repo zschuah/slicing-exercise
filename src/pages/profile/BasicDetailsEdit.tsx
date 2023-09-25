@@ -1,30 +1,28 @@
 import { useForm } from "react-hook-form";
 import { IoPersonSharp } from "react-icons/io5";
+import { useOutletContext } from "react-router-dom";
 import { twMerge } from "tailwind-merge";
-import { Profile, useProfileContext } from "../../context/ProfileContext";
+import { ProfileType } from "../../context/ProfileContext";
 import ButtonBlack from "../../layout/ButtonBlack";
 import InputGray from "../../layout/InputGray";
 import SelectGray from "../../layout/SelectGray";
+import { ProfileOutletContext } from "../Profile";
 
 type FormValues = Pick<
-  Profile,
+  ProfileType,
   "salutation" | "firstName" | "lastName" | "emailAddress"
 >;
 
 const BasicDetailsEdit = () => {
-  const { profile, setProfile } = useProfileContext();
+  const { profile, handleFormSubmit } =
+    useOutletContext<ProfileOutletContext>();
+
   const {
     register,
     handleSubmit,
     formState: { isValid, isSubmitted, errors },
     reset,
   } = useForm<FormValues>({ mode: "onSubmit" });
-
-  const handleFormSubmit = (data: FormValues) => {
-    console.log(data);
-    const newProfile: Profile = { ...profile, ...data };
-    setProfile(newProfile);
-  };
 
   return (
     <div className="p-8 flex gap-8">
