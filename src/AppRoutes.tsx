@@ -1,7 +1,6 @@
 import { Navigate, Route, Routes } from "react-router-dom";
 import "./App.css";
-import { useAuthContext } from "./context/AuthContext";
-import { ProfileProvider } from "./context/ProfileContext";
+import Protected from "./components/main/Protected";
 import Contacts from "./pages/Contacts";
 import Login from "./pages/Login";
 import Profile from "./pages/Profile";
@@ -16,26 +15,24 @@ import SpouseDetails from "./pages/profile-tabs/SpouseDetails";
 import SpouseDetailsEdit from "./pages/profile-tabs/SpouseDetailsEdit";
 
 const AppRoutes = () => {
-  const { isAuth } = useAuthContext();
-
   return (
     <Routes>
       <Route path="/" element={<Login />} />
       <Route path="/register" element={<Register />} />
       <Route
         path="/contacts"
-        element={isAuth ? <Contacts /> : <Navigate to="/" />}
+        element={
+          <Protected>
+            <Contacts />
+          </Protected>
+        }
       />
       <Route
         path="/profile"
         element={
-          isAuth ? (
-            <ProfileProvider>
-              <Profile />
-            </ProfileProvider>
-          ) : (
-            <Navigate to="/" />
-          )
+          <Protected>
+            <Profile />
+          </Protected>
         }
       >
         <Route index element={<Navigate to="basic" />} />
