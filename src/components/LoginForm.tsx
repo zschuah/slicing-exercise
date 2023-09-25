@@ -54,11 +54,7 @@ const LoginForm = ({ handleFormSubmit }: PropTypes) => {
         <label htmlFor="keep-logged">Keep me logged in</label>
       </div>
 
-      <ButtonBlack
-        className="ml-40"
-        // disabled={!isUserIdValid || !isPasswordValid}
-        disabled={!isDirty || !isValid}
-      >
+      <ButtonBlack className="ml-40 px-8" disabled={!isDirty || !isValid}>
         Login
       </ButtonBlack>
     </form>

@@ -55,8 +55,8 @@ const RegisterForm = ({ handleFormSubmit }: PropTypes) => {
         />
       </div>
 
-      <ButtonBlack className="ml-24" disabled={!isDirty || !isValid}>
-        REGISTER
+      <ButtonBlack className="ml-40 px-8" disabled={!isDirty || !isValid}>
+        Register
       </ButtonBlack>
     </form>
   );
