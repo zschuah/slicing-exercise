@@ -29,7 +29,7 @@ function App() {
           LOGO
         </Link>
         <GiHamburgerMenu
-          className="absolute top-4 right-8 lg:right-4 text-4xl cursor-pointer z-10 hover:opacity-50"
+          className="absolute top-4 right-8 xl:right-4 text-4xl cursor-pointer z-10 hover:opacity-50"
           onClick={() => setIsShowNav(true)}
         />
       </section>
