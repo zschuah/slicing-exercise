@@ -2,8 +2,10 @@ import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { twMerge } from "tailwind-merge";
 import LoginForm, { FormValues } from "../components/LoginForm";
+import { useAuthContext } from "../context/AuthContext";
 
 const Login = () => {
+  const { setIsAuth } = useAuthContext();
   const navigate = useNavigate();
   const [isShowError, setIsShowError] = useState(false);
 
@@ -11,6 +13,7 @@ const Login = () => {
     console.log(data);
     setIsShowError(true);
     if (data.userId === "test") {
+      setIsAuth(true);
       navigate("/contacts");
     }
   };

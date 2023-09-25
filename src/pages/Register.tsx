@@ -1,16 +1,21 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import RegisterForm, { FormValues } from "../components/RegisterForm";
+import { useAuthContext } from "../context/AuthContext";
 
 const Register = () => {
+  const { setIsAuth } = useAuthContext();
+  const navigate = useNavigate();
   const [isShowError, setIsShowError] = useState(false);
 
   const handleFormSubmit = (data: FormValues) => {
     console.log(data);
-    if (data.password !== data.confirmPassword) {
-      setIsShowError(true);
-    } else {
+    if (data.password === data.confirmPassword) {
       setIsShowError(false);
+      setIsAuth(true);
+      navigate("/contacts");
+    } else {
+      setIsShowError(true);
     }
   };
 

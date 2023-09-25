@@ -1,5 +1,6 @@
 import { twMerge } from "tailwind-merge";
 import DrawerLink from "../layout/DrawerLink";
+import { useAuthContext } from "../context/AuthContext";
 
 type PropTypes = {
   isShowNav: boolean;
@@ -7,6 +8,8 @@ type PropTypes = {
 };
 
 const Drawer = ({ isShowNav, setIsShowNav }: PropTypes) => {
+  const { setIsAuth } = useAuthContext();
+
   return (
     <>
       <div
@@ -38,7 +41,7 @@ const Drawer = ({ isShowNav, setIsShowNav }: PropTypes) => {
           <li>
             <DrawerLink to="/profile/basic/edit">Edit Profile</DrawerLink>
           </li>
-          <li>
+          <li onClick={() => setIsAuth(false)}>
             <DrawerLink to="/">Logout</DrawerLink>
           </li>
         </ul>
