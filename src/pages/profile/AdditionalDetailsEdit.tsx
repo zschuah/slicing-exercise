@@ -1,24 +1,25 @@
 import { format, sub } from "date-fns";
 import { useForm } from "react-hook-form";
 import { twMerge } from "tailwind-merge";
-import { useProfileContext } from "../../context/ProfileContext";
+import { Profile, useProfileContext } from "../../context/ProfileContext";
 import ButtonBlack from "../../layout/ButtonBlack";
 import InputGray from "../../layout/InputGray";
 import SelectGray from "../../layout/SelectGray";
 
-type FormValues = {
-  mobileNumber: string;
-  homeAddress: string;
-  country: string;
-  postalCode: string;
-  nationality: string;
-  dateOfBirth: string;
-  gender: string;
-  maritalStatus: string;
-};
+type FormValues = Pick<
+  Profile,
+  | "mobileNumber"
+  | "homeAddress"
+  | "country"
+  | "postalCode"
+  | "nationality"
+  | "dateOfBirth"
+  | "gender"
+  | "maritalStatus"
+>;
 
 const AdditionalDetailsEdit = () => {
-  const { profile } = useProfileContext();
+  const { profile, setProfile } = useProfileContext();
   const {
     register,
     handleSubmit,
@@ -28,6 +29,8 @@ const AdditionalDetailsEdit = () => {
 
   const handleFormSubmit = (data: FormValues) => {
     console.log(data);
+    const newProfile: Profile = { ...profile, ...data };
+    setProfile(newProfile);
   };
 
   return (

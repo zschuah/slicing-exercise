@@ -1,20 +1,18 @@
 import { useForm } from "react-hook-form";
 import { IoPersonSharp } from "react-icons/io5";
 import { twMerge } from "tailwind-merge";
-import { useProfileContext } from "../../context/ProfileContext";
+import { Profile, useProfileContext } from "../../context/ProfileContext";
 import ButtonBlack from "../../layout/ButtonBlack";
 import InputGray from "../../layout/InputGray";
 import SelectGray from "../../layout/SelectGray";
 
-type FormValues = {
-  salutation: string;
-  firstName: string;
-  lastName: string;
-  emailAddress: string;
-};
+type FormValues = Pick<
+  Profile,
+  "salutation" | "firstName" | "lastName" | "emailAddress"
+>;
 
 const BasicDetailsEdit = () => {
-  const { profile } = useProfileContext();
+  const { profile, setProfile } = useProfileContext();
   const {
     register,
     handleSubmit,
@@ -24,6 +22,8 @@ const BasicDetailsEdit = () => {
 
   const handleFormSubmit = (data: FormValues) => {
     console.log(data);
+    const newProfile: Profile = { ...profile, ...data };
+    setProfile(newProfile);
   };
 
   return (

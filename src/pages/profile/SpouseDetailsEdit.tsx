@@ -1,14 +1,13 @@
 import { useForm } from "react-hook-form";
-import { useProfileContext } from "../../context/ProfileContext";
+import { Profile, useProfileContext } from "../../context/ProfileContext";
 import ButtonBlack from "../../layout/ButtonBlack";
 import InputGray from "../../layout/InputGray";
 import SelectGray from "../../layout/SelectGray";
 
-type FormValues = {
-  spouseSalutation: string;
-  spouseFirstName: string;
-  spouseLastName: string;
-};
+type FormValues = Pick<
+  Profile,
+  "spouseSalutation" | "spouseFirstName" | "spouseLastName"
+>;
 
 const SpouseDetailsEdit = () => {
   const { profile } = useProfileContext();

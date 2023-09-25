@@ -1,14 +1,9 @@
 import { useForm } from "react-hook-form";
-import { useProfileContext } from "../../context/ProfileContext";
+import { Profile, useProfileContext } from "../../context/ProfileContext";
 import ButtonBlack from "../../layout/ButtonBlack";
 import InputGray from "../../layout/InputGray";
 
-type FormValues = {
-  hobbies: string;
-  sports: string;
-  music: string;
-  movies: string;
-};
+type FormValues = Pick<Profile, "hobbies" | "sports" | "music" | "movies">;
 
 const PersonalPreferncesEdit = () => {
   const { profile } = useProfileContext();

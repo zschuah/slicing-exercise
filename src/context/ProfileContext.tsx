@@ -1,6 +1,6 @@
 import { ReactNode, createContext, useContext, useState } from "react";
 
-type Profile = {
+export type Profile = {
   salutation: "Mr." | "Ms." | "Mrs." | "";
   firstName: string;
   lastName: string;
