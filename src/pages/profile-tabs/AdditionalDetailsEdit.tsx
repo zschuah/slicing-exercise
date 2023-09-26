@@ -27,7 +27,6 @@ const AdditionalDetailsEdit = () => {
     register,
     handleSubmit,
     formState: { isSubmitted, isValid, errors },
-    reset,
   } = useForm<FormValues>();
 
   return (

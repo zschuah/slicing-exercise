@@ -14,7 +14,7 @@ type FormValues = Pick<
 const SpouseDetailsEdit = () => {
   const { profile, handleFormSubmit, handleCancel } =
     useOutletContext<ProfileOutletContext>();
-  const { register, handleSubmit, reset } = useForm<FormValues>();
+  const { register, handleSubmit } = useForm<FormValues>();
 
   return (
     <form

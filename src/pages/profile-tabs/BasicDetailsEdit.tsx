@@ -20,7 +20,6 @@ const BasicDetailsEdit = () => {
     register,
     handleSubmit,
     formState: { isValid, isSubmitted, errors },
-    reset,
   } = useForm<FormValues>({ mode: "onSubmit" });
 
   return (

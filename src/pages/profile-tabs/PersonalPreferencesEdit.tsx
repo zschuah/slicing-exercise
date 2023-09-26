@@ -10,7 +10,7 @@ type FormValues = Pick<ProfileType, "hobbies" | "sports" | "music" | "movies">;
 const PersonalPreferncesEdit = () => {
   const { profile, handleFormSubmit, handleCancel } =
     useOutletContext<ProfileOutletContext>();
-  const { register, handleSubmit, reset } = useForm<FormValues>();
+  const { register, handleSubmit } = useForm<FormValues>();
 
   return (
     <form
