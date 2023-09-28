@@ -32,7 +32,7 @@ const Register = () => {
   return (
     <div className="h-screen grid place-items-center bg-bubbles">
       <section>
-        <h1 className="text-4xl">
+        <h1 className="text-4xl text-center">
           Welcome to <span className="font-bold">myApp</span>
         </h1>
         <div className="border-t-4 border-black w-1/2 mx-auto mt-4"></div>

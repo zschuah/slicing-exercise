@@ -29,7 +29,11 @@ const LoginForm = ({ handleFormSubmit }: PropTypes) => {
         <label htmlFor="user-id" className="w-40 text-lg text-right pr-2">
           User ID*
         </label>
-        <InputGray id="user-id" {...register("userId", { required: true })} />
+        <InputGray
+          id="user-id"
+          className="w-full sm:w-auto"
+          {...register("userId", { required: true })}
+        />
       </div>
 
       <div className="flex items-center relative">
@@ -38,6 +42,7 @@ const LoginForm = ({ handleFormSubmit }: PropTypes) => {
         </label>
         <InputGrayPass
           id="password"
+          className="w-full sm:w-auto"
           {...register("password", { required: true })}
         />
       </div>
@@ -46,7 +51,7 @@ const LoginForm = ({ handleFormSubmit }: PropTypes) => {
         <input
           id="keep-logged"
           type="checkbox"
-          className="ml-40 mr-1"
+          className="ml-28 sm:ml-40 mr-1"
           // checked={isKeepLogged}
           // onChange={() => setIsKeepLogged(!isKeepLogged)}
           {...register("isKeepLogged")}
@@ -54,7 +59,10 @@ const LoginForm = ({ handleFormSubmit }: PropTypes) => {
         <label htmlFor="keep-logged">Keep me logged in</label>
       </div>
 
-      <ButtonBlack className="ml-40 px-8" disabled={!isDirty || !isValid}>
+      <ButtonBlack
+        className="ml-28 sm:ml-40 px-8"
+        disabled={!isDirty || !isValid}
+      >
         Login
       </ButtonBlack>
     </form>
