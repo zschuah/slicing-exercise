@@ -4,6 +4,7 @@ import bcrypt from "bcryptjs";
 import { useNavigate } from "react-router-dom";
 import { useAuthContext } from "../context/AuthContext";
 import { useProfileContext } from "../context/ProfileContext";
+import { generateUrlProfile } from "../utils/constants";
 import { UserType } from "./useCreateUser";
 import useHandleCookie from "./useHandleCookie";
 
@@ -18,9 +19,7 @@ const useLoginUser = (
 
   const { mutate: loginUser, isLoading } = useMutation({
     mutationFn: async (user: UserType) => {
-      const res = await axios.get(
-        `https://ng-complete-guide-e9c43.firebaseio.com/myapp/users/${user.userId}.json`
-      );
+      const res = await axios.get(generateUrlProfile(user.userId));
       const isMatch = bcrypt.compareSync(user.password, res.data.password);
 
       if (res.data === null) {

@@ -2,6 +2,7 @@ import { useMutation } from "@tanstack/react-query";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { useAuthContext } from "../context/AuthContext";
+import { generateUrlProfile } from "../utils/constants";
 
 export type UserType = {
   userId: string;
@@ -17,40 +18,35 @@ const useCreateUser = (
 
   const { mutate: createUser, isLoading } = useMutation({
     mutationFn: async (user: UserType) => {
-      const checkExisting = await axios.get(
-        `https://ng-complete-guide-e9c43.firebaseio.com/myapp/users/${user.userId}.json`
-      );
+      const checkExisting = await axios.get(generateUrlProfile(user.userId));
       if (checkExisting.data) {
         setRegisterError("User ID already exists.");
         throw new Error("User ID already exists.");
       } else {
-        const res = await axios.put(
-          `https://ng-complete-guide-e9c43.firebaseio.com/myapp/users/${user.userId}.json`,
-          {
-            password: user.password,
-            profile: {
-              salutation: "",
-              firstName: "",
-              lastName: "",
-              emailAddress: "",
-              mobileNumber: "",
-              homeAddress: "",
-              country: "",
-              postalCode: "",
-              nationality: "",
-              dateOfBirth: "",
-              gender: "",
-              maritalStatus: "",
-              spouseSalutation: "",
-              spouseFirstName: "",
-              spouseLastName: "",
-              hobbies: "",
-              sports: "",
-              music: "",
-              movies: "",
-            },
-          }
-        );
+        const res = await axios.put(generateUrlProfile(user.userId), {
+          password: user.password,
+          profile: {
+            salutation: "",
+            firstName: "",
+            lastName: "",
+            emailAddress: "",
+            mobileNumber: "",
+            homeAddress: "",
+            country: "",
+            postalCode: "",
+            nationality: "",
+            dateOfBirth: "",
+            gender: "",
+            maritalStatus: "",
+            spouseSalutation: "",
+            spouseFirstName: "",
+            spouseLastName: "",
+            hobbies: "",
+            sports: "",
+            music: "",
+            movies: "",
+          },
+        });
 
         return { user, data: res.data };
       }
