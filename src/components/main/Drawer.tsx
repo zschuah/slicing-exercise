@@ -1,6 +1,6 @@
-import { useCookies } from "react-cookie";
 import { twMerge } from "tailwind-merge";
 import { useAuthContext } from "../../context/AuthContext";
+import useHandleCookie from "../../hooks/useHandleCookie";
 import DrawerLink from "../../layout/DrawerLink";
 
 type PropTypes = {
@@ -10,7 +10,7 @@ type PropTypes = {
 
 const Drawer = ({ isShowNav, setIsShowNav }: PropTypes) => {
   const { setIsAuth } = useAuthContext();
-  const [cookies, setCookie, removeCookie] = useCookies(["myapp"]);
+  const { removeCookie } = useHandleCookie();
 
   const handleLogout = () => {
     setIsAuth(false);

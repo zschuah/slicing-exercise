@@ -1,19 +1,18 @@
 import { useMutation } from "@tanstack/react-query";
 import axios from "axios";
 import bcrypt from "bcryptjs";
-import { add } from "date-fns";
-import { useCookies } from "react-cookie";
 import { useNavigate } from "react-router-dom";
 import { useAuthContext } from "../context/AuthContext";
-import { UserType } from "./useCreateUser";
 import { useProfileContext } from "../context/ProfileContext";
+import { UserType } from "./useCreateUser";
+import useHandleCookie from "./useHandleCookie";
 
 const useLoginUser = (
   setIsShowError: React.Dispatch<React.SetStateAction<boolean>>
 ) => {
   const { setIsAuth } = useAuthContext();
   const navigate = useNavigate();
-  const [cookies, setCookie] = useCookies(["myapp"]);
+  const { handleSetCookie } = useHandleCookie();
 
   const { setProfile } = useProfileContext();
 
@@ -38,19 +37,10 @@ const useLoginUser = (
     },
     onSuccess: ({ user, data }) => {
       console.log("LOGIN SUCCESSFUL!");
-
       if (user.isKeepLogged) {
-        setCookie(
-          "myapp",
-          { userId: user.userId },
-          {
-            expires: add(new Date(), { years: 1 }),
-          }
-        );
+        handleSetCookie(user);
       }
-
       setProfile(data.profile);
-
       setIsAuth(true);
       navigate("/contacts");
     },
