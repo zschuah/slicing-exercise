@@ -1,31 +1,23 @@
 import bcrypt from "bcryptjs";
 import { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
+import { twMerge } from "tailwind-merge";
 import RegisterForm, { FormValues } from "../components/RegisterForm";
-import { useAuthContext } from "../context/AuthContext";
 import useCreateUser from "../hooks/useCreateUser";
 
 const Register = () => {
-  const { setIsAuth } = useAuthContext();
-  const navigate = useNavigate();
-  const [isShowError, setIsShowError] = useState(false);
+  const [registerError, setRegisterError] = useState("");
 
-  const { createUser, isLoading } = useCreateUser();
+  const { createUser, isLoading } = useCreateUser(setRegisterError);
 
   const handleFormSubmit = (data: FormValues) => {
     if (data.password === data.confirmPassword) {
-      setIsShowError(false);
-
       const salt = bcrypt.genSaltSync(10);
       const hash = bcrypt.hashSync("password", salt);
-
-      //Send to database
+      //Persist to firebase database
       createUser({ userId: data.userId, password: hash });
-
-      // setIsAuth(true);
-      // navigate("/contacts");
     } else {
-      setIsShowError(true);
+      setRegisterError("Your passwords do not match.");
     }
   };
 
@@ -47,11 +39,15 @@ const Register = () => {
         </p>
       </section>
 
-      {isShowError && (
-        <div className="absolute bottom-0 bg-red-500 text-white py-2 px-4 rounded-t-lg">
-          <p className="italic">Your passwords do not match.</p>
-        </div>
-      )}
+      <div
+        className={twMerge(
+          "absolute bottom-0 bg-red-500 text-white py-2 px-4 rounded-t-lg",
+          !registerError && "translate-y-full",
+          "transition"
+        )}
+      >
+        <p className="italic">{registerError}</p>
+      </div>
     </div>
   );
 };

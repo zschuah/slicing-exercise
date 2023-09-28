@@ -37,6 +37,7 @@ const useLoginUser = (
     },
     onSuccess: ({ user, data }) => {
       console.log("LOGIN SUCCESSFUL!");
+      setIsShowError(false);
       if (user.isKeepLogged) {
         handleSetCookie(user);
       }

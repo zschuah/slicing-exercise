@@ -9,11 +9,12 @@ type PropTypes = {
 };
 
 const Drawer = ({ isShowNav, setIsShowNav }: PropTypes) => {
-  const { setIsAuth } = useAuthContext();
+  const { setIsAuth, setUserId } = useAuthContext();
   const { removeCookie } = useHandleCookie();
 
   const handleLogout = () => {
     setIsAuth(false);
+    setUserId("");
     removeCookie("myapp");
   };
 
