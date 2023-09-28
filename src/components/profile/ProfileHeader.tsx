@@ -7,8 +7,8 @@ const ProfileHeader = () => {
   const isEdit = location.pathname.includes("edit");
 
   return (
-    <div className="flex items-end">
-      <h2 className="text-4xl">
+    <div className="flex items-end w-full">
+      <h2 className="text-3xl sm:text-4xl">
         {isEdit ? <span>Edit </span> : <span>My </span>}
         <span className="font-bold">Profile</span>
       </h2>

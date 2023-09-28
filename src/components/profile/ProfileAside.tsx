@@ -15,7 +15,7 @@ const ProfileAside = () => {
   };
 
   return (
-    <aside className="w-48 mr-10 pt-20">
+    <aside className="w-full sm:w-48 sm:mr-10 sm:pt-20 text-center sm:text-left">
       <ul className="border-t border-black border-dashed">
         <li>
           <TabDotted to={handleUrlEdit("/profile/basic")}>

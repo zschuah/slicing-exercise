@@ -1,6 +1,6 @@
 import { Outlet, useNavigate } from "react-router-dom";
-import ProfileHeader from "../components/profile/ProfileHeader";
 import ProfileAside from "../components/profile/ProfileAside";
+import ProfileHeader from "../components/profile/ProfileHeader";
 import { ProfileType, useProfileContext } from "../context/ProfileContext";
 import useUpdateUser from "../hooks/useUpdateUser";
 
@@ -30,10 +30,10 @@ const Profile = () => {
   return (
     <div className="h-screen bg-bubbles--blue overflow-auto">
       <section className="mt-20 max-w-7xl mx-auto px-4">
-        <div className="flex items-start">
+        <div className="flex items-start flex-col sm:flex-row">
           <ProfileAside />
 
-          <section className="flex-1">
+          <section className="flex-1 mt-10 sm:mt-0 w-full">
             <ProfileHeader />
             <Outlet context={{ profile, handleFormSubmit, handleCancel }} />
           </section>
