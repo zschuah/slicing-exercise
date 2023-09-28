@@ -21,7 +21,7 @@ type FormValues = Pick<
 >;
 
 const AdditionalDetailsEdit = () => {
-  const { profile, handleFormSubmit, handleCancel } =
+  const { profile, handleFormSubmit, handleCancel, isLoading } =
     useOutletContext<ProfileOutletContext>();
   const {
     register,
@@ -146,7 +146,7 @@ const AdditionalDetailsEdit = () => {
       </div>
 
       <div className="pt-4">
-        <ButtonBlack disabled={isSubmitted && !isValid}>
+        <ButtonBlack disabled={isLoading || (isSubmitted && !isValid)}>
           Save & Update
         </ButtonBlack>
         <ButtonBlack

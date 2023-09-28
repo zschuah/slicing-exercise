@@ -11,19 +11,19 @@ export type ProfileOutletContext = {
   handleCancel: () => void;
   dpUrl: string;
   handleDpChange: (files: FileList | null) => void;
+  isLoading: boolean;
 };
 
 const Profile = () => {
   const navigate = useNavigate();
   const { profile, setProfile } = useProfileContext();
-  const { updateUser } = useUpdateUser();
+  const { updateUser, isLoading } = useUpdateUser();
   const [dpUrl, setDpUrl] = useState<string>();
 
   const handleFormSubmit = (data: Partial<ProfileType>) => {
     const newProfile: ProfileType = { ...profile, ...data };
     setProfile(newProfile);
     updateUser(newProfile);
-    navigate("..", { relative: "path" });
   };
 
   const handleCancel = () => {
@@ -40,7 +40,6 @@ const Profile = () => {
       // reader.onload = () => console.log(reader.result);
 
       const imageURL = URL.createObjectURL(image);
-      console.log(imageURL);
       setDpUrl(imageURL);
     }
   };
@@ -60,6 +59,7 @@ const Profile = () => {
                 handleCancel,
                 dpUrl,
                 handleDpChange,
+                isLoading,
               }}
             />
           </section>
