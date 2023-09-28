@@ -1,21 +1,15 @@
 import { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { twMerge } from "tailwind-merge";
 import LoginForm, { FormValues } from "../components/LoginForm";
-import { useAuthContext } from "../context/AuthContext";
+import useLoginUser from "../hooks/useLoginUser";
 
 const Login = () => {
-  const { setIsAuth } = useAuthContext();
-  const navigate = useNavigate();
   const [isShowError, setIsShowError] = useState(false);
+  const { loginUser } = useLoginUser(setIsShowError);
 
   const handleFormSubmit = (data: FormValues) => {
-    console.log(data);
-    setIsShowError(true);
-    if (data.userId === "test") {
-      setIsAuth(true);
-      navigate("/contacts");
-    }
+    loginUser(data);
   };
 
   return (

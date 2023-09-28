@@ -1,19 +1,29 @@
+import bcrypt from "bcryptjs";
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import RegisterForm, { FormValues } from "../components/RegisterForm";
 import { useAuthContext } from "../context/AuthContext";
+import useCreateUser from "../hooks/useCreateUser";
 
 const Register = () => {
   const { setIsAuth } = useAuthContext();
   const navigate = useNavigate();
   const [isShowError, setIsShowError] = useState(false);
 
+  const { createUser, isLoading } = useCreateUser();
+
   const handleFormSubmit = (data: FormValues) => {
-    console.log(data);
     if (data.password === data.confirmPassword) {
       setIsShowError(false);
-      setIsAuth(true);
-      navigate("/contacts");
+
+      const salt = bcrypt.genSaltSync(10);
+      const hash = bcrypt.hashSync("password", salt);
+
+      //Send to database
+      createUser({ userId: data.userId, password: hash });
+
+      // setIsAuth(true);
+      // navigate("/contacts");
     } else {
       setIsShowError(true);
     }

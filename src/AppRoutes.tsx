@@ -13,7 +13,6 @@ import PersonalPreferences from "./pages/profile-tabs/PersonalPreferences";
 import PersonalPreferencesEdit from "./pages/profile-tabs/PersonalPreferencesEdit";
 import SpouseDetails from "./pages/profile-tabs/SpouseDetails";
 import SpouseDetailsEdit from "./pages/profile-tabs/SpouseDetailsEdit";
-import { ProfileProvider } from "./context/ProfileContext";
 
 const AppRoutes = () => {
   return (
@@ -32,9 +31,7 @@ const AppRoutes = () => {
         path="/profile"
         element={
           <Protected>
-            <ProfileProvider>
-              <Profile />
-            </ProfileProvider>
+            <Profile />
           </Protected>
         }
       >

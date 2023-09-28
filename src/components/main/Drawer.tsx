@@ -1,3 +1,4 @@
+import { useCookies } from "react-cookie";
 import { twMerge } from "tailwind-merge";
 import { useAuthContext } from "../../context/AuthContext";
 import DrawerLink from "../../layout/DrawerLink";
@@ -9,6 +10,12 @@ type PropTypes = {
 
 const Drawer = ({ isShowNav, setIsShowNav }: PropTypes) => {
   const { setIsAuth } = useAuthContext();
+  const [cookies, setCookie, removeCookie] = useCookies(["myapp"]);
+
+  const handleLogout = () => {
+    setIsAuth(false);
+    removeCookie("myapp");
+  };
 
   return (
     <>
@@ -41,7 +48,7 @@ const Drawer = ({ isShowNav, setIsShowNav }: PropTypes) => {
           <li>
             <DrawerLink to="/profile/basic/edit">Edit Profile</DrawerLink>
           </li>
-          <li onClick={() => setIsAuth(false)}>
+          <li onClick={handleLogout}>
             <DrawerLink to="/">Logout</DrawerLink>
           </li>
         </ul>
