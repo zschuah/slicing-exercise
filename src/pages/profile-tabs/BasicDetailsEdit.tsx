@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { IoPersonSharp } from "react-icons/io5";
 import { useOutletContext } from "react-router-dom";
@@ -15,30 +14,14 @@ type FormValues = Pick<
 >;
 
 const BasicDetailsEdit = () => {
-  const { profile, handleFormSubmit, handleCancel } =
+  const { profile, handleFormSubmit, handleCancel, dpUrl, handleDpChange } =
     useOutletContext<ProfileOutletContext>();
+
   const {
     register,
     handleSubmit,
     formState: { isValid, isSubmitted, errors },
   } = useForm<FormValues>({ mode: "onSubmit" });
-
-  const [dpUrl, setDpUrl] = useState<string>();
-
-  const handleDpChange = (files: FileList | null) => {
-    if (files) {
-      const image = files[0];
-
-      // CONVERTS TO BLOB TO SAVE TO DATABASE
-      // const reader = new FileReader();
-      // reader.readAsDataURL(image);
-      // reader.onload = () => console.log(reader.result);
-
-      const imageURL = URL.createObjectURL(image);
-      console.log(imageURL);
-      setDpUrl(imageURL);
-    }
-  };
 
   return (
     <div className="p-0 sm:p-8 flex gap-8 flex-col sm:flex-row">

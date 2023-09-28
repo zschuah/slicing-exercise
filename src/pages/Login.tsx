@@ -6,7 +6,7 @@ import useLoginUser from "../hooks/useLoginUser";
 
 const Login = () => {
   const [isShowError, setIsShowError] = useState(false);
-  const { loginUser } = useLoginUser(setIsShowError);
+  const { loginUser, isLoading } = useLoginUser(setIsShowError);
 
   const handleFormSubmit = (data: FormValues) => {
     //Verify with firebase database
@@ -26,7 +26,7 @@ const Login = () => {
         </h1>
         <div className="border-t-4 border-black w-1/2 mx-auto mt-4"></div>
 
-        <LoginForm handleFormSubmit={handleFormSubmit} />
+        <LoginForm handleFormSubmit={handleFormSubmit} isLoading={isLoading} />
 
         <p className="text-center">
           <span>No account? </span>

@@ -29,7 +29,10 @@ const Register = () => {
         </h1>
         <div className="border-t-4 border-black w-1/2 mx-auto mt-4"></div>
 
-        <RegisterForm handleFormSubmit={handleFormSubmit} />
+        <RegisterForm
+          handleFormSubmit={handleFormSubmit}
+          isLoading={isLoading}
+        />
 
         <p className="text-center">
           <span>Already registered? </span>

@@ -1,12 +1,17 @@
 import { IoPersonSharp } from "react-icons/io5";
-import { useProfileContext } from "../../context/ProfileContext";
+import { useOutletContext } from "react-router-dom";
+import { ProfileOutletContext } from "../Profile";
 
 const BasicDetails = () => {
-  const { profile } = useProfileContext();
+  const { profile, dpUrl } = useOutletContext<ProfileOutletContext>();
 
   return (
-    <section className="p-8 flex gap-8 flex-col sm:flex-row">
-      <IoPersonSharp className="text-8xl mt-4 mx-auto sm:mx-0" />
+    <section className="p-8 flex gap-8 flex-col sm:flex-row items-start">
+      {dpUrl ? (
+        <img src={dpUrl} alt="dp-url" className="w-28 object-contain" />
+      ) : (
+        <IoPersonSharp className="text-8xl mt-4" />
+      )}
 
       <div className="space-y-4">
         <div>

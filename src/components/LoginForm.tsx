@@ -11,9 +11,10 @@ export type FormValues = {
 
 type PropTypes = {
   handleFormSubmit: SubmitHandler<FormValues>;
+  isLoading: boolean;
 };
 
-const LoginForm = ({ handleFormSubmit }: PropTypes) => {
+const LoginForm = ({ handleFormSubmit, isLoading }: PropTypes) => {
   const {
     register,
     handleSubmit,
@@ -61,7 +62,7 @@ const LoginForm = ({ handleFormSubmit }: PropTypes) => {
 
       <ButtonBlack
         className="ml-28 sm:ml-40 px-8"
-        disabled={!isDirty || !isValid}
+        disabled={!isDirty || !isValid || isLoading}
       >
         Login
       </ButtonBlack>

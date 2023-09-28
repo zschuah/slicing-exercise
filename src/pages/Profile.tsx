@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { Outlet, useNavigate } from "react-router-dom";
 import ProfileAside from "../components/profile/ProfileAside";
 import ProfileHeader from "../components/profile/ProfileHeader";
@@ -8,15 +9,17 @@ export type ProfileOutletContext = {
   profile: ProfileType;
   handleFormSubmit: (data: Partial<ProfileType>) => void;
   handleCancel: () => void;
+  dpUrl: string;
+  handleDpChange: (files: FileList | null) => void;
 };
 
 const Profile = () => {
   const navigate = useNavigate();
   const { profile, setProfile } = useProfileContext();
   const { updateUser } = useUpdateUser();
+  const [dpUrl, setDpUrl] = useState<string>();
 
   const handleFormSubmit = (data: Partial<ProfileType>) => {
-    console.log(data);
     const newProfile: ProfileType = { ...profile, ...data };
     setProfile(newProfile);
     updateUser(newProfile);
@@ -27,6 +30,21 @@ const Profile = () => {
     navigate("..", { relative: "path" });
   };
 
+  const handleDpChange = (files: FileList | null) => {
+    if (files) {
+      const image = files[0];
+
+      // CONVERTS TO BLOB TO SAVE TO DATABASE
+      // const reader = new FileReader();
+      // reader.readAsDataURL(image);
+      // reader.onload = () => console.log(reader.result);
+
+      const imageURL = URL.createObjectURL(image);
+      console.log(imageURL);
+      setDpUrl(imageURL);
+    }
+  };
+
   return (
     <div className="h-screen bg-bubbles--blue overflow-auto">
       <section className="mt-20 max-w-7xl mx-auto px-4">
@@ -35,7 +53,15 @@ const Profile = () => {
 
           <section className="flex-1 mt-10 sm:mt-0 w-full">
             <ProfileHeader />
-            <Outlet context={{ profile, handleFormSubmit, handleCancel }} />
+            <Outlet
+              context={{
+                profile,
+                handleFormSubmit,
+                handleCancel,
+                dpUrl,
+                handleDpChange,
+              }}
+            />
           </section>
         </div>
       </section>

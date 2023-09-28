@@ -18,14 +18,10 @@ const useLoginUser = (
 
   const { mutate: loginUser, isLoading } = useMutation({
     mutationFn: async (user: UserType) => {
-      console.log(user);
       const res = await axios.get(
         `https://ng-complete-guide-e9c43.firebaseio.com/myapp/users/${user.userId}.json`
       );
-      console.log(res.data);
-
       const isMatch = bcrypt.compareSync(user.password, res.data.password);
-      console.log(isMatch);
 
       if (res.data === null) {
         throw new Error("No user found");
