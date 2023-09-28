@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { IoPersonSharp } from "react-icons/io5";
 import { useOutletContext } from "react-router-dom";
@@ -22,12 +23,45 @@ const BasicDetailsEdit = () => {
     formState: { isValid, isSubmitted, errors },
   } = useForm<FormValues>({ mode: "onSubmit" });
 
+  const [dpUrl, setDpUrl] = useState<string>();
+
+  const handleDpChange = (files: FileList | null) => {
+    if (files) {
+      const image = files[0];
+
+      // CONVERTS TO BLOB TO SAVE TO DATABASE
+      // const reader = new FileReader();
+      // reader.readAsDataURL(image);
+      // reader.onload = () => console.log(reader.result);
+
+      const imageURL = URL.createObjectURL(image);
+      console.log(imageURL);
+      setDpUrl(imageURL);
+    }
+  };
+
   return (
     <div className="p-0 sm:p-8 flex gap-8 flex-col sm:flex-row">
       <div className="flex flex-col items-center w-28 mx-auto sm:mx-0">
-        <IoPersonSharp className="text-8xl mt-4" />
+        {dpUrl ? (
+          <img src={dpUrl} alt="dp-url" />
+        ) : (
+          <IoPersonSharp className="text-8xl mt-4" />
+        )}
+
         <div className="text-center">
-          <p className="text-sm underline">Upload image</p>
+          <label
+            className="text-sm underline cursor-pointer"
+            htmlFor="dp-upload"
+          >
+            Upload image
+          </label>
+          <input
+            id="dp-upload"
+            type="file"
+            accept="image/*"
+            onChange={(e) => handleDpChange(e.target.files)}
+          />
           <p className="text-xs italic">
             (JPG or PNG format with maximum size of 1 MB)
           </p>

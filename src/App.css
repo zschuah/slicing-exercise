@@ -18,6 +18,10 @@
   background-position: center;
 }
 
+input[type="file"] {
+  display: none;
+}
+
 /* OVERLAY PORTION CONVERTED TO TAILWIND CONFIG */
 
 /* .show-overlay {
