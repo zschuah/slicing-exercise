@@ -1,5 +1,5 @@
 import { GiHamburgerMenu } from "react-icons/gi";
-import { Link } from "react-router-dom";
+import { twMerge } from "tailwind-merge";
 import { useAuthContext } from "../../context/AuthContext";
 
 type PropTypes = {
@@ -11,15 +11,15 @@ const Header = ({ setIsShowNav }: PropTypes) => {
 
   return (
     <header className="max-w-7xl relative mx-auto">
-      <Link
-        to="/"
-        className="absolute top-4 left-4 px-8 py-1 border border-black z-10 hover:opacity-50"
-      >
+      <span className="absolute top-4 left-4 px-8 py-1 border border-black z-10">
         LOGO
-      </Link>
+      </span>
       {isAuth && (
         <GiHamburgerMenu
-          className="absolute top-4 right-8 xl:right-4 text-4xl cursor-pointer z-10 hover:opacity-50"
+          className={twMerge(
+            "absolute top-4 right-8 xl:right-4 text-4xl cursor-pointer z-10",
+            "hover:opacity-50"
+          )}
           onClick={() => setIsShowNav(true)}
         />
       )}
