@@ -10,7 +10,7 @@ import useHandleCookie from "./useHandleCookie";
 const useLoginUser = (
   setIsShowError: React.Dispatch<React.SetStateAction<boolean>>
 ) => {
-  const { setIsAuth } = useAuthContext();
+  const { setIsAuth, setUserId } = useAuthContext();
   const navigate = useNavigate();
   const { handleSetCookie } = useHandleCookie();
 
@@ -42,6 +42,7 @@ const useLoginUser = (
       }
       setProfile(data.profile);
       setIsAuth(true);
+      setUserId(user.userId);
       navigate("/contacts");
     },
     onError: () => {

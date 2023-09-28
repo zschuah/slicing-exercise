@@ -2,6 +2,7 @@ import { Outlet, useNavigate } from "react-router-dom";
 import ProfileHeader from "../components/profile/ProfileHeader";
 import ProfileAside from "../components/profile/ProfileAside";
 import { ProfileType, useProfileContext } from "../context/ProfileContext";
+import useUpdateUser from "../hooks/useUpdateUser";
 
 export type ProfileOutletContext = {
   profile: ProfileType;
@@ -12,11 +13,13 @@ export type ProfileOutletContext = {
 const Profile = () => {
   const navigate = useNavigate();
   const { profile, setProfile } = useProfileContext();
+  const { updateUser } = useUpdateUser();
 
   const handleFormSubmit = (data: Partial<ProfileType>) => {
     console.log(data);
     const newProfile: ProfileType = { ...profile, ...data };
     setProfile(newProfile);
+    updateUser(newProfile);
     navigate("..", { relative: "path" });
   };
 
