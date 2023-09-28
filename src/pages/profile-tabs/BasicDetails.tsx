@@ -5,8 +5,8 @@ const BasicDetails = () => {
   const { profile } = useProfileContext();
 
   return (
-    <section className="p-8 flex gap-8">
-      <IoPersonSharp className="text-8xl mt-4" />
+    <section className="p-8 flex gap-8 flex-col sm:flex-row">
+      <IoPersonSharp className="text-8xl mt-4 mx-auto sm:mx-0" />
 
       <div className="space-y-4">
         <div>

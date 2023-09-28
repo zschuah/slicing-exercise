@@ -23,8 +23,8 @@ const BasicDetailsEdit = () => {
   } = useForm<FormValues>({ mode: "onSubmit" });
 
   return (
-    <div className="p-8 flex gap-8">
-      <div className="flex flex-col items-center w-28">
+    <div className="p-0 sm:p-8 flex gap-8 flex-col sm:flex-row">
+      <div className="flex flex-col items-center w-28 mx-auto sm:mx-0">
         <IoPersonSharp className="text-8xl mt-4" />
         <div className="text-center">
           <p className="text-sm underline">Upload image</p>
@@ -35,7 +35,7 @@ const BasicDetailsEdit = () => {
       </div>
 
       <form
-        className="space-y-4 w-80"
+        className="space-y-4 w-80 pb-8"
         onSubmit={handleSubmit(handleFormSubmit)}
       >
         <div>
