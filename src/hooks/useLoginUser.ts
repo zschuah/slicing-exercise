@@ -34,11 +34,13 @@ const useLoginUser = (
       console.log("LOGIN SUCCESSFUL!");
       setIsShowError(false);
       if (user.isKeepLogged) {
-        handleSetCookie(user);
+        handleSetCookie(user, data.profile);
       }
-      setProfile(data.profile);
+
       setIsAuth(true);
       setUserId(user.userId);
+      setProfile(data.profile);
+
       navigate("/contacts");
     },
     onError: () => {
